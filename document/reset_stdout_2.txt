@@ -1,0 +1,4 @@
+[BACKUP] Backed up 27 zones to c:\Users\301\finalProject\daiso-category-search-dev-kdg\backend\database\map_zones_backup.json
+[DELETE] Deleted 27 zones from database
+[SEED] Re-seeding zones...
+[ERROR] Error during reset: 'cp949' codec can't encode character '\U0001f331' in position 0: illegal multibyte sequence

@@ -1,0 +1,153 @@
+@import url('https://cdn.jsdelivr.net/gh/sunn-us/SUITE/fonts/variable/woff2/SUITE-Variable.css');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables for Daiso Design System */
+:root {
+    /* Primary Colors */
+    --daiso-red: #E60012;
+    --daiso-red-light: #FF6B6B;
+    --daiso-red-dark: #B8000E;
+    
+    /* Neutral Colors */
+    --gray-50: #FAFAFA;
+    --gray-100: #F5F5F5;
+    --gray-200: #E8E8E8;
+    --gray-300: #E0E0E0;
+    --gray-400: #CCCCCC;
+    --gray-500: #999999;
+    --gray-600: #666666;
+    --gray-700: #333333;
+    --gray-800: #1A1A1A;
+    
+    /* Semantic Colors */
+    --success: #4CAF50;
+    --warning: #FFC107;
+    --error: #F44336;
+    --info: #2196F3;
+}
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background-color: var(--gray-50);
+    color: var(--gray-700);
+}
+
+/* Headings use SUITE */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'SUITE', 'Pretendard', sans-serif;
+    font-weight: 700;
+}
+
+/* Smooth transitions */
+a, button {
+    transition: all 0.2s ease;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--gray-100);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gray-400);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-500);
+}
+
+/* Utility Classes */
+@layer utilities {
+    .text-daiso-red {
+        color: var(--daiso-red);
+    }
+    
+    .bg-daiso-red {
+        background-color: var(--daiso-red);
+    }
+    
+    .border-daiso-red {
+        border-color: var(--daiso-red);
+    }
+    
+    .shadow-daiso {
+        box-shadow: 0 4px 12px rgba(230, 0, 18, 0.3);
+    }
+    
+    /* Kiosk Layout */
+    .kiosk-container {
+        width: 1280px;
+        height: 800px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    
+    /* Mobile Layout */
+    .mobile-container {
+        width: 390px;
+        height: 844px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+}
+
+/* Animation Classes */
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+}
+
+@keyframes wave-bar {
+    0%, 100% {
+        transform: scaleY(0.3);
+    }
+    50% {
+        transform: scaleY(1);
+    }
+}
+
+.animate-pulse-ring {
+    animation: pulse-ring 2s ease-in-out infinite;
+}
+
+.animate-wave-bar {
+    animation: wave-bar 1s ease-in-out infinite;
+}

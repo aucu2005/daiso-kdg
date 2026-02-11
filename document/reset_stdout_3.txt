@@ -1,0 +1,6 @@
+[BACKUP] Backed up 0 zones to c:\Users\301\finalProject\daiso-category-search-dev-kdg\backend\database\map_zones_backup.json
+[DELETE] Deleted 0 zones from database
+[SEED] Re-seeding zones...
+[SEED] Seeding map zones...
+[SUCCESS] Seeded 27 zones.
+[SUCCESS] Reset complete. Current zone count: 27

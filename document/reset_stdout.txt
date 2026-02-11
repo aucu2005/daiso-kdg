@@ -1,0 +1,38 @@
+Traceback (most recent call last):
+  File "c:\Users\301\finalProject\daiso-category-search-dev-kdg\backend\database\reset_map_zones.py", line 18, in log
+    print(message)
+    ~~~~~^^^^^^^^^
+UnicodeEncodeError: 'cp949' codec can't encode character '\U0001f4e6' in position 0: illegal multibyte sequence
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\301\finalProject\daiso-category-search-dev-kdg\backend\database\reset_map_zones.py", line 50, in reset_zones
+    log(f"\U0001f4e6 Backed up {len(rows)} zones to {BACKUP_PATH}")
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\301\finalProject\daiso-category-search-dev-kdg\backend\database\reset_map_zones.py", line 20, in log
+    print(message.encode('utf-8', errors='ignore').decode('utf-8'))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp949' codec can't encode character '\U0001f4e6' in position 0: illegal multibyte sequence
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\301\finalProject\daiso-category-search-dev-kdg\backend\database\reset_map_zones.py", line 18, in log
+    print(message)
+    ~~~~~^^^^^^^^^
+UnicodeEncodeError: 'cp949' codec can't encode character '\u274c' in position 0: illegal multibyte sequence
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\301\finalProject\daiso-category-search-dev-kdg\backend\database\reset_map_zones.py", line 78, in <module>
+    reset_zones()
+    ~~~~~~~~~~~^^
+  File "c:\Users\301\finalProject\daiso-category-search-dev-kdg\backend\database\reset_map_zones.py", line 71, in reset_zones
+    log(f"\u274c Error during reset: {e}")
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\301\finalProject\daiso-category-search-dev-kdg\backend\database\reset_map_zones.py", line 20, in log
+    print(message.encode('utf-8', errors='ignore').decode('utf-8'))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp949' codec can't encode character '\u274c' in position 0: illegal multibyte sequence
