@@ -141,6 +141,14 @@ def product_exists(name: str) -> bool:
     conn.close()
     return exists
 
+def get_product_by_id(product_id: int) -> Optional[Dict]:
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM products WHERE id = ?', (product_id,))
+    row = cursor.fetchone()
+    conn.close()
+    return dict(row) if row else None
+
 def get_utterance_count() -> int:
     conn = get_connection()
     cursor = conn.cursor()
@@ -148,6 +156,27 @@ def get_utterance_count() -> int:
     count = cursor.fetchone()[0]
     conn.close()
     return count
+
+def get_all_categories() -> Dict[str, List[str]]:
+    """Get hierarchy of major -> middle categories"""
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute('SELECT DISTINCT category_major, category_middle FROM products WHERE category_major IS NOT NULL ORDER BY category_major, category_middle')
+    rows = cursor.fetchall()
+    conn.close()
+    
+    categories = {}
+    for row in rows:
+        major = row['category_major']
+        middle = row['category_middle']
+        if not major: continue
+        
+        if major not in categories:
+            categories[major] = []
+        if middle and middle not in categories[major]:
+            categories[major].append(middle)
+            
+    return categories
 
 def search_products(keyword: str) -> List[Dict]:
     """Search products by name (simple LIKE query, AND logic)"""

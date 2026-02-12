@@ -12,6 +12,9 @@ import {
     LayoutGrid, Sparkles, Utensils, Bath, Pencil,
     Box, Cookie, Lamp, Dog
 } from 'lucide-react';
+import MapNavigation, { Point } from '@/components/MapNavigation';
+import { Floor } from '@/types/MapData';
+
 
 const categories = [
     { icon: <LayoutGrid className="w-5 h-5" />, label: '전체', id: 'all' },
@@ -35,6 +38,51 @@ export default function CategoryMapPage() {
     const searchParams = useSearchParams();
     const initialCategory = searchParams.get('category') || 'all';
     const [activeCategory, setActiveCategory] = useState<string>('all');
+
+    // Navigation State
+    const [navPath, setNavPath] = useState<Point[]>([]);
+    const [navFloor, setNavFloor] = useState<Floor | null>(null);
+    const [isNavigating, setIsNavigating] = useState(false);
+
+    useEffect(() => {
+        const cat = searchParams.get('category');
+        if (cat) setActiveCategory(cat);
+
+        const targetId = searchParams.get('productId');
+        if (targetId) {
+            fetchRoute(targetId);
+        }
+    }, [searchParams]);
+
+    const fetchRoute = async (productId: string) => {
+        try {
+            // Mock start location
+            const startX = 100;
+            const startY = 100;
+
+            const res = await fetch('http://localhost:8000/api/navigation/route', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    start_x: startX,
+                    start_y: startY,
+                    floor: 'B1',
+                    target_product_id: parseInt(productId)
+                })
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                setNavPath(data.path);
+                setNavFloor(data.floor as Floor);
+                setIsNavigating(true);
+            } else {
+                console.error("Failed to fetch route");
+            }
+        } catch (e) {
+            console.error("Error fetching route:", e);
+        }
+    };
     // const { b1Zones, b2Zones } = useAllMapZones();
 
     // Use defaults if no API data
@@ -114,10 +162,10 @@ export default function CategoryMapPage() {
                             B1 Floor
                         </h3>
                         <div className="flex-1 relative bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
-                            <img
-                                src={mapB1.src}
-                                alt="B1 Map"
-                                className="w-full h-auto object-contain opacity-30"
+                            <MapNavigation
+                                floor="B1"
+                                path={navFloor === 'B1' ? navPath : []}
+                                className={navFloor === 'B1' ? '' : 'opacity-50'}
                             />
                         </div>
                     </div>
@@ -128,10 +176,10 @@ export default function CategoryMapPage() {
                             B2 Floor
                         </h3>
                         <div className="flex-1 relative bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
-                            <img
-                                src={mapB2.src}
-                                alt="B2 Map"
-                                className="w-full h-auto object-contain opacity-30"
+                            <MapNavigation
+                                floor="B2"
+                                path={navFloor === 'B2' ? navPath : []}
+                                className={navFloor === 'B2' ? '' : 'opacity-50'}
                             />
                         </div>
                     </div>

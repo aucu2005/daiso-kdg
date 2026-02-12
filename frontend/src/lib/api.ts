@@ -61,7 +61,7 @@ export interface MapZone {
         left: string;
         width: string;
         height: string;
-    };
+    } | { x: number; y: number }[];
     color: string;
     fontSize?: number;
 }
@@ -88,5 +88,11 @@ export async function deleteMapZone(id: number): Promise<{ success: boolean }> {
         method: 'DELETE',
     });
     if (!response.ok) throw new Error('Failed to delete zone');
+    return response.json();
+}
+
+export async function fetchCategories(): Promise<Record<string, string[]>> {
+    const response = await fetch(`${API_BASE_URL}/api/categories`);
+    if (!response.ok) throw new Error('Failed to fetch categories');
     return response.json();
 }

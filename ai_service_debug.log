@@ -1,0 +1,60 @@
+[2026-02-12 17:42:35.747] [DEBUG] --- [Node: Intent & Keyword] Input: '세제' ---
+[2026-02-12 17:42:36.332] [DEBUG] --- [Node: Intent & Keyword] Input: '세제' ---
+[2026-02-12 17:42:37.171] [DEBUG] [Intent Gate] '세제' → Y
+[2026-02-12 17:42:37.338] [DEBUG] [Intent Gate] '세제' → Y
+[2026-02-12 17:42:39.650] [DEBUG] [NLU] '세제' → PRODUCT_LOCATION | latency=2476ms
+[2026-02-12 17:42:39.652] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-12 17:42:39.678] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='세제' ---
+[2026-02-12 17:42:39.992] [DEBUG] [NLU] '세제' → PRODUCT_LOCATION | latency=2651ms
+[2026-02-12 17:42:40.001] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-12 17:42:40.002] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='세제' ---
+[2026-02-12 17:42:40.560] [DEBUG] [Keyword Expand] '세제' → ['세제', '주방', '세정제', '청소용품', '세척']
+[2026-02-12 17:42:40.574] [DEBUG] --- [Node: Hybrid Search] item='세제' / rewrite='세제 종류별 가격 비교 세탁세제 주방세제 세정제 다이소 세제 위치 추천 성분 효과 친환경' ---
+[2026-02-12 17:42:40.586] [DEBUG] [BM25] '세제' → 5 results
+[2026-02-12 17:42:53.768] [DEBUG] [Vector] '세제 종류별 가격 비교 세탁세제 주방세제 세정제 다이소 세제 위치 추천 성분 효과 친환경' → 10 results
+[2026-02-12 17:42:53.768] [DEBUG] [RRF] BM25=5(×2) + Vector=10 → Fused=13
+[2026-02-12 17:42:53.770] [DEBUG]     → Final: 13 unique candidates
+[2026-02-12 17:42:53.777] [DEBUG] [Keyword Expand] '세제' → ['세제', '주방', '세정제', '생활용품', '청소']
+[2026-02-12 17:42:53.777] [DEBUG] --- [Node: Intent & Keyword] Input: '물티슈' ---
+[2026-02-12 17:42:53.779] [DEBUG] --- [Node: Intent & Keyword] Input: '물티슈' ---
+[2026-02-12 17:42:53.780] [DEBUG] --- [Node: Reranker] Query='세제', 13 candidates ---
+[2026-02-12 17:42:53.784] [DEBUG] --- [Node: Hybrid Search] item='세제' / rewrite='세제 종류별 가격비교 세탁세제 주방세제 세정제 섬유유연제 표백제 세탁비누 세척제 세탁조크리' ---
+[2026-02-12 17:42:53.787] [DEBUG] [BM25] '세제' → 5 results
+[2026-02-12 17:42:53.814] [DEBUG] [Vector] '세제 종류별 가격비교 세탁세제 주방세제 세정제 섬유유연제 표백제 세탁비누 세척제 세탁조크리' → 10 results
+[2026-02-12 17:42:53.814] [DEBUG] [RRF] BM25=5(×2) + Vector=10 → Fused=14
+[2026-02-12 17:42:53.816] [DEBUG]     → Final: 14 unique candidates
+[2026-02-12 17:42:53.817] [DEBUG] --- [Node: Reranker] Query='세제', 14 candidates ---
+[2026-02-12 17:42:54.387] [DEBUG] [Intent Gate] '물티슈' → Y
+[2026-02-12 17:42:54.483] [DEBUG] [Intent Gate] '물티슈' → Y
+[2026-02-12 17:42:54.880] [DEBUG] [Reranker] Query='세제' → selected=101 | reason='세탁 세제, 주방 세제 등 여러 종류의 세제가 있지만, 가장 일반적인 세탁 세제를 선택했습...' | latency=1.099s
+[2026-02-12 17:42:54.887] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-12 17:42:54.892] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-12 17:42:55.280] [DEBUG] [Reranker] Query='세제' → selected=101 | reason='세탁 세제를 찾는 문의에 가장 적합한 상품은 리큐 히말라야 핑크솔트 세탁 세제입니다. 다른...' | latency=1.462s
+[2026-02-12 17:42:55.283] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-12 17:42:55.284] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-12 17:42:56.959] [DEBUG] [NLU] '물티슈' → PRODUCT_LOCATION | latency=2570ms
+[2026-02-12 17:42:56.961] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-12 17:42:56.962] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='물티슈' ---
+[2026-02-12 17:42:57.250] [DEBUG] [NLU] '물티슈' → PRODUCT_LOCATION | latency=2764ms
+[2026-02-12 17:42:57.252] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-12 17:42:57.254] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='물티슈' ---
+[2026-02-12 17:42:57.753] [DEBUG] [Keyword Expand] '물티슈' → ['물티슈', '생활용품', '티슈', '휴대용']
+[2026-02-12 17:42:57.757] [DEBUG] --- [Node: Hybrid Search] item='물티슈' / rewrite='물티슈 종류별로 보기, 휴대용 물티슈, 캡형 물티슈, 리필형 물티슈, 대용량 물티슈, 아기' ---
+[2026-02-12 17:42:57.763] [DEBUG] [BM25] '물티슈' → 13 results
+[2026-02-12 17:42:57.828] [DEBUG] [Vector] '물티슈 종류별로 보기, 휴대용 물티슈, 캡형 물티슈, 리필형 물티슈, 대용량 물티슈, 아기' → 10 results
+[2026-02-12 17:42:57.828] [DEBUG] [RRF] BM25=13(×2) + Vector=10 → Fused=23
+[2026-02-12 17:42:57.830] [DEBUG]     → Final: 23 unique candidates
+[2026-02-12 17:42:57.831] [DEBUG] --- [Node: Reranker] Query='물티슈', 23 candidates ---
+[2026-02-12 17:42:58.141] [DEBUG] [Keyword Expand] '물티슈' → ['물티슈', '생활', '티슈', '청소용품', '휴대용']
+[2026-02-12 17:42:58.142] [DEBUG] --- [Node: Hybrid Search] item='물티슈' / rewrite='물티슈 종류별로 보기: 휴대용, 캡형, 엠보싱, 아기용 등 다양한 물티슈를 찾아보세요. 향' ---
+[2026-02-12 17:42:58.144] [DEBUG] [BM25] '물티슈' → 13 results
+[2026-02-12 17:42:58.196] [DEBUG] [Vector] '물티슈 종류별로 보기: 휴대용, 캡형, 엠보싱, 아기용 등 다양한 물티슈를 찾아보세요. 향' → 10 results
+[2026-02-12 17:42:58.197] [DEBUG] [RRF] BM25=13(×2) + Vector=10 → Fused=22
+[2026-02-12 17:42:58.198] [DEBUG]     → Final: 22 unique candidates
+[2026-02-12 17:42:58.199] [DEBUG] --- [Node: Reranker] Query='물티슈', 22 candidates ---
+[2026-02-12 17:42:59.219] [DEBUG] [Reranker] Query='물티슈' → selected=6 | reason='가장 일반적인 물티슈를 찾는 것으로 판단되며, 150매입 캡형 물티슈가 적합합니다....' | latency=1.019s
+[2026-02-12 17:42:59.227] [DEBUG] [Reranker] Query='물티슈' → selected=6 | reason='사용자가 물티슈를 찾고 있으며, 가장 일반적인 물티슈 제품인 '에끌라 깨끗한 물티슈 150...' | latency=1.395s
+[2026-02-12 17:42:59.234] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-12 17:42:59.235] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-12 17:42:59.240] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-12 17:42:59.243] [DEBUG] --- [Node: Response] Finalizing ---

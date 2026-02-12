@@ -2,13 +2,12 @@ import json
 import os
 import sys
 
-# Add parent directory to path to import database module
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+# Add project root to sys.path
+sys.path.append(os.getcwd())
 
-from database import insert_product, init_database
+from backend.database.database import insert_product, init_database
 
-JSON_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 
-                        'poc', 'bjy', 'poc', 'data', 'poc_v6_mock_product_db.json')
+JSON_PATH = os.path.join(os.getcwd(), 'poc', 'bjy', 'poc', 'data', 'poc_v6_mock_product_db.json')
 
 def seed_products():
     print(f"Reading data from: {JSON_PATH}")

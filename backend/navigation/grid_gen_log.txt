@@ -1,0 +1,7 @@
+Base Dir: C:\Users\301\finalProject\daiso-category-search-dev-kdg
+Images Dir: C:\Users\301\finalProject\daiso-category-search-dev-kdg\frontend\src\assets\images
+Output Dir: C:\Users\301\finalProject\daiso-category-search-dev-kdg\backend\navigation\grids
+Processing b1 map from C:\Users\301\finalProject\daiso-category-search-dev-kdg\frontend\src\assets\images\map_b1.jpg...
+✅ Saved grid to C:\Users\301\finalProject\daiso-category-search-dev-kdg\backend\navigation\grids\b1_grid.json
+Processing b2 map from C:\Users\301\finalProject\daiso-category-search-dev-kdg\frontend\src\assets\images\map_b2.jpg...
+✅ Saved grid to C:\Users\301\finalProject\daiso-category-search-dev-kdg\backend\navigation\grids\b2_grid.json

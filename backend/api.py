@@ -15,14 +15,16 @@ import json
 
 from .database.database import (
     search_products_flexible, get_all_products, get_related_products_for_context,
-    get_map_zones, save_map_zone, delete_map_zone, init_database
+    get_map_zones, save_map_zone, delete_map_zone, get_product_by_id, init_database
 )
+
+from backend.navigation.pathfinder import MapNavigator
 
 import yaml
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import Optional, Literal
+from typing import Optional, Literal, Union
 
 from backend.stt import QualityGate, PolicyGate, WhisperAdapter
 from backend.stt.types import STTResult, QualityGateResult, PolicyIntent
@@ -97,12 +99,30 @@ class STTProcessResponse(BaseModel):
     processing_time_ms: int
 
 
+class NavigationRequest(BaseModel):
+    start_x: int
+    start_y: int
+    floor: str
+    target_product_id: int
+
+class Point(BaseModel):
+    x: int
+    y: int
+
+class NavigationResponse(BaseModel):
+    path: list[Point]
+    distance: float
+    floor: str
+
+
 # ============== Global State ==============
 
 config: dict = {}
 whisper_adapter: Optional[WhisperAdapter] = None
 quality_gate: Optional[QualityGate] = None
+quality_gate: Optional[QualityGate] = None
 policy_gate: Optional[PolicyGate] = None
+map_navigator: Optional[MapNavigator] = None
 
 
 def load_config():
@@ -159,7 +179,35 @@ async def lifespan(app: FastAPI):
     # Initialize Database
     init_database()
     print(f"✅ Database initialized")
+
+    # Initialize MapNavigator
+    map_navigator = MapNavigator()
+    grids_dir = Path(__file__).parent / "navigation" / "grids"
     
+    # Load B1 Grid
+    b1_path = grids_dir / "b1_grid.json"
+    if b1_path.exists():
+        try:
+            with open(b1_path, "r") as f:
+                data = json.load(f)
+                # Ensure grid_data is list of lists of ints
+                # grid_data might be flat or nested? MapProcessor saves nested list.
+                map_navigator.load_grid("B1", data["grid_data"])
+                print(f"✅ Loaded B1 navigation grid")
+        except Exception as e:
+            print(f"⚠️ Failed to load B1 grid: {e}")
+            
+    # Load B2 Grid
+    b2_path = grids_dir / "b2_grid.json"
+    if b2_path.exists():
+        try:
+            with open(b2_path, "r") as f:
+                data = json.load(f)
+                map_navigator.load_grid("B2", data["grid_data"])
+                print(f"✅ Loaded B2 navigation grid")
+        except Exception as e:
+            print(f"⚠️ Failed to load B2 grid: {e}")
+
     print("🎉 STT Pipeline API ready!\n")
     
     yield
@@ -232,10 +280,18 @@ async def get_zones(floor: Optional[str] = None):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/api/categories")
+def get_categories_endpoint():
+    try:
+        from .database.database import get_all_categories
+        return get_all_categories()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 class MapZoneCreate(BaseModel):
     floor: str
     name: str
-    rect: dict
+    rect: Union[dict, list]
     color: str
 
 class MapZoneDelete(BaseModel):
@@ -470,3 +526,99 @@ async def query_ai_pipeline(req: QueryRequest):
         import traceback
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"AI Pipeline error: {str(e)}")
+
+
+@app.post("/api/navigation/route", response_model=NavigationResponse)
+async def calculate_route(req: NavigationRequest):
+    """
+    Calculate path from start location to product location.
+    """
+    if not map_navigator:
+        raise HTTPException(status_code=503, detail="Navigation service not initialized")
+
+    # 1. Get Product Location
+    # We need product details to know shelf_id, floor, location_x, location_y
+    # But wait, database.py get_product_by_id needed.
+    # Updated import above.
+    
+    # Assuming we added get_product_by_id to database.py?
+    # Actually database.py doesn't have it explicitly exported in my previous view.
+    # It has get_all_products.
+    # I should check if get_product_by_id exists or implement it.
+    # For now, let's implement a quick query here or use existing function.
+    
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM products WHERE id = ?", (req.target_product_id,))
+    row = cursor.fetchone()
+    conn.close()
+    
+    if not row:
+        raise HTTPException(status_code=404, detail="Product not found")
+    
+    product = dict(row)
+    
+    target_floor = product.get("floor")
+    # If no floor, default to request floor or handle error?
+    if not target_floor:
+         # Fallback logic: check shelf_id prefix?
+         # For now, error or default.
+         pass
+
+    # If start floor != target floor, we need multi-floor navigation (elevator/stairs).
+    # For this phase, assume same floor or just path on target floor?
+    # Requirement: "B1/B2 층별 내비게이션".
+    # If floors differ, we probably just guide to elevator.
+    # But let's simplify: if floors differ, return error or path on start floor to exit?
+    # Or just navigate on target floor (assuming user moves there).
+    # Frontend handles floor switching?
+    
+    # Let's assume user is on the same floor for now, or we return path for the target floor
+    # and frontend tells user "Go to B1".
+    
+    # Wait, if user is on B1 and product is on B2:
+    # We should calculate path on B1 to elevator, then B2 elevator to product.
+    # But for Phase 3, let's stick to single floor pathfinding if possible, 
+    # or just return path on the *target* floor assuming start point is relevant to that floor (e.g. entrance).
+    
+    calculation_floor = target_floor if target_floor else req.floor
+    
+    # Target coordinates
+    # product['location_x'] and ['location_y'] should be in DB.
+    # If they are None (not mapped yet), we can't navigate.
+    target_x = product.get("location_x")
+    target_y = product.get("location_y")
+    
+    if target_x is None or target_y is None:
+        # Fallback: Use simple mapping from shelf_id if needed?
+        # Or return empty path with specific message.
+         raise HTTPException(status_code=400, detail="Product location not mapped")
+         
+    # Convert map coordinates (px) to grid coordinates.
+    # Grid size is 10px from map_processor.
+    GRID_SIZE = 10 
+    
+    start_grid_x = req.start_x // GRID_SIZE
+    start_grid_y = req.start_y // GRID_SIZE
+    end_grid_x = target_x // GRID_SIZE
+    end_grid_y = target_y // GRID_SIZE
+    
+    path = map_navigator.find_path(calculation_floor, (start_grid_x, start_grid_y), (end_grid_x, end_grid_y))
+    
+    if path is None:
+         raise HTTPException(status_code=404, detail="No path found")
+         
+    # Convert path back to pixel coordinates (center of grid cell)
+    pixel_path = [
+        Point(x=x * GRID_SIZE + GRID_SIZE // 2, y=y * GRID_SIZE + GRID_SIZE // 2)
+        for (x, y) in path
+    ]
+    
+    return NavigationResponse(
+        path=pixel_path,
+        distance=len(path) * GRID_SIZE, # Approximate
+        floor=calculation_floor
+    )
+
+
+from backend.database.database import get_connection

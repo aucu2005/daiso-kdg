@@ -1,0 +1,18 @@
+INFO:     Will watch for changes in these directories: ['C:\\Users\\301\\finalProject\\daiso-category-search-dev-kdg']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [16412] using WatchFiles
+INFO:     Started server process [8908]
+INFO:     Waiting for application startup.
+ERROR:    Traceback (most recent call last):
+  File "C:\Users\301\AppData\Local\miniforge3\envs\daiso\Lib\site-packages\starlette\routing.py", line 694, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\301\AppData\Local\miniforge3\envs\daiso\Lib\contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\301\finalProject\daiso-category-search-dev-kdg\backend\api.py", line 142, in lifespan
+    print("\U0001f680 Starting STT Pipeline API...")
+UnicodeEncodeError: 'cp949' codec can't encode character '\U0001f680' in position 0: illegal multibyte sequence
+
+ERROR:    Application startup failed. Exiting.
+INFO:     Stopping reloader process [16412]
