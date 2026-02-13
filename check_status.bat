@@ -1,4 +1,7 @@
 @echo off
-echo STARTING GIT STATUS
-git status
-echo FINISHED GIT STATUS
+echo CHECKING GIT STATUS
+git status -uno
+echo -------------------
+echo CHECKING LAST COMMIT
+git log -1
+echo -------------------
