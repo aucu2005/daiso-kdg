@@ -14,6 +14,8 @@ import {
 } from 'lucide-react';
 import MapNavigation, { Point } from '@/components/MapNavigation';
 import { Floor } from '@/types/MapData';
+import { MapZone } from '@/utils/mapZones';
+import { useAllMapZones } from '@/hooks/useMapZones';
 
 
 const categories = [
@@ -28,21 +30,18 @@ const categories = [
     { icon: <Dog className="w-5 h-5" />, label: '애견', id: 'pet' },
 ];
 
-// B1 Floor zones
-// import { MapZone, DEFAULT_B1_ZONES, DEFAULT_B2_ZONES } from '@/utils/mapZones';
-// import { useAllMapZones } from '@/hooks/useMapZones';
-
-
 export default function CategoryMapPage() {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const initialCategory = searchParams.get('category') || 'all';
     const [activeCategory, setActiveCategory] = useState<string>('all');
 
     // Navigation State
     const [navPath, setNavPath] = useState<Point[]>([]);
     const [navFloor, setNavFloor] = useState<Floor | null>(null);
     const [isNavigating, setIsNavigating] = useState(false);
+
+    // Fetch dynamic zones from API
+    const { b1Zones, b2Zones } = useAllMapZones();
 
     useEffect(() => {
         const cat = searchParams.get('category');
@@ -56,18 +55,18 @@ export default function CategoryMapPage() {
 
     const fetchRoute = async (productId: string) => {
         try {
-            // Mock start location
-            const startX = 100;
-            const startY = 100;
+            // Mock start location or use Kiosk ID
+            const kioskId = "kiosk_1"; // TODO: Load from config/storage
 
             const res = await fetch('http://localhost:8000/api/navigation/route', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    start_x: startX,
-                    start_y: startY,
+                    start_x: 50, // Default center if retrieval fails
+                    start_y: 90, // Default bottom
                     floor: 'B1',
-                    target_product_id: parseInt(productId)
+                    target_product_id: parseInt(productId),
+                    kiosk_id: kioskId
                 })
             });
 
@@ -83,41 +82,45 @@ export default function CategoryMapPage() {
             console.error("Error fetching route:", e);
         }
     };
-    // const { b1Zones, b2Zones } = useAllMapZones();
 
-    // Use defaults if no API data
-    // const displayB1 = b1Zones;
-    // const displayB2 = b2Zones;
-
-    useEffect(() => {
-        const cat = searchParams.get('category');
-        if (cat) {
-            setActiveCategory(cat);
-        }
-    }, [searchParams]);
-
-    // Map Sidebar ID to Zone Names
-    /*
-    const getTargetZones = (catId: string) => {
+    // Category to Zone Mapping
+    const getTargetZones = (catId: string): { names: string[], floor: Floor | 'ALL' } => {
         switch (catId) {
-            case 'beauty': return ['화장품', '뷰티'];
-            case 'kitchen': return ['주방'];
-            case 'bath': return ['욕실'];
-            case 'stationery': return ['문구'];
-            case 'storage': return ['수납'];
-            case 'food': return ['식품', '간식'];
-            case 'interior': return ['인테리어소품', '홈패브릭', '내추럴코너'];
-            case 'pet': return ['반려동물'];
-            case 'all': return [];
-            default: return [catId]; // Assume raw zone name if not matched
+            case 'beauty': return { names: ['화장품'], floor: 'B1' };
+            case 'kitchen': return { names: ['주방'], floor: 'B2' };
+            case 'bath': return { names: ['욕실'], floor: 'B2' };
+            case 'stationery': return { names: ['문구'], floor: 'B2' }; // Note: '문구' is on B1 and B2 in zones? Checked utility: B1 has '문구', B2 has '문구'.
+            case 'storage': return { names: ['수납'], floor: 'B2' };
+            case 'food': return { names: ['식품'], floor: 'B1' };
+            case 'interior': return { names: ['인테리어소품', '홈패브릭'], floor: 'ALL' }; // B1 & B2
+            case 'pet': return { names: ['반려동물'], floor: 'B2' };
+            case 'all': return { names: [], floor: 'ALL' };
+            default: return { names: [], floor: 'ALL' };
         }
     };
 
-    const targetZones = getTargetZones(activeCategory);
+    const targetInfo = getTargetZones(activeCategory);
 
-    const renderZones = (zones: MapZone[]) => {
+    const renderZones = (floor: Floor, zones: MapZone[]) => {
+        const isAll = activeCategory === 'all';
+
         return zones.map((zone, idx) => {
-            const isHighlighted = targetZones.includes(zone.name) || activeCategory === 'all';
+            // Check if this zone should be highlighted
+            const isTarget = targetInfo.names.includes(zone.name);
+            const shouldHighlight = isTarget;
+
+            // Visibility logic:
+            // If navigating -> only show navigation (unless we want landmarks?)
+            if (isNavigating) return null;
+
+            // If not navigating:
+            //   If all -> show all labels softly
+            //   If category selected -> highlight targets strongly, HIDE others to reduce clutter
+            if (!isAll && !shouldHighlight) return null;
+
+            // Skip if rect is a polygon path (Array)
+            if (Array.isArray(zone.rect)) return null;
+
             return (
                 <div
                     key={idx}
@@ -127,19 +130,30 @@ export default function CategoryMapPage() {
                         top: zone.rect.top,
                         width: zone.rect.width,
                         height: zone.rect.height,
-                        backgroundColor: isHighlighted ? zone.color : 'rgba(200,200,200,0.2)',
-                        opacity: isHighlighted ? 0.9 : 0.5,
+                        // Remove background and border for cleaner look
+                        backgroundColor: 'transparent',
+                        border: 'none',
+
+                        // Layout for text centering
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        border: isHighlighted ? '2px solid rgba(0,0,0,0.1)' : '1px solid #ddd',
-                        borderRadius: '8px',
-                        fontSize: zone.fontSize || 12,
-                        fontWeight: 'bold',
-                        color: '#333',
-                        transition: 'all 0.3s ease',
-                        zIndex: isHighlighted ? 10 : 1,
-                        boxShadow: isHighlighted ? '0 4px 6px rgba(0,0,0,0.1)' : 'none',
+
+                        // Text Styling
+                        fontSize: shouldHighlight && !isAll ? '18px' : '11px',
+                        fontWeight: shouldHighlight && !isAll ? '900' : 'bold',
+                        color: shouldHighlight && !isAll ? '#da291c' : '#555', // Daiso Red for highlight
+                        zIndex: shouldHighlight ? 20 : 1,
+
+                        // Text Shadow / Glow for readability on map
+                        textShadow: shouldHighlight && !isAll
+                            ? '2px 2px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff'
+                            : '0 0 2px rgba(255,255,255,0.8)',
+
+                        // Optional: Scale effect
+                        transform: shouldHighlight && !isAll ? 'scale(1.1)' : 'none',
+                        transition: 'all 0.3s ease-in-out',
+                        pointerEvents: 'none', // Allow clicks to pass through if needed, though they are just labels
                     }}
                 >
                     {zone.name}
@@ -147,7 +161,6 @@ export default function CategoryMapPage() {
             );
         });
     };
-    */
 
     return (
         <div className="kiosk-container flex flex-col bg-gray-50">
@@ -157,7 +170,8 @@ export default function CategoryMapPage() {
                 {/* Map Container */}
                 <div className="flex-1 flex gap-4">
                     {/* B1 Floor Card */}
-                    <div className="flex-1 bg-white rounded-2xl shadow-soft p-5 flex flex-col">
+                    <div className={`flex-1 bg-white rounded-2xl shadow-soft p-5 flex flex-col transition-opacity duration-300 ${(activeCategory !== 'all' && targetInfo.floor === 'B2') ? 'opacity-40' : 'opacity-100'
+                        }`}>
                         <h3 className="font-suite font-semibold text-lg text-gray-700 mb-3 text-center">
                             B1 Floor
                         </h3>
@@ -165,13 +179,15 @@ export default function CategoryMapPage() {
                             <MapNavigation
                                 floor="B1"
                                 path={navFloor === 'B1' ? navPath : []}
-                                className={navFloor === 'B1' ? '' : 'opacity-50'}
+                                className="" // Always visible
                             />
+                            {!isNavigating && renderZones('B1', b1Zones)}
                         </div>
                     </div>
 
                     {/* B2 Floor Card */}
-                    <div className="flex-1 bg-white rounded-2xl shadow-soft p-5 flex flex-col">
+                    <div className={`flex-1 bg-white rounded-2xl shadow-soft p-5 flex flex-col transition-opacity duration-300 ${(activeCategory !== 'all' && targetInfo.floor === 'B1') ? 'opacity-40' : 'opacity-100'
+                        }`}>
                         <h3 className="font-suite font-semibold text-lg text-gray-700 mb-3 text-center">
                             B2 Floor
                         </h3>
@@ -179,8 +195,9 @@ export default function CategoryMapPage() {
                             <MapNavigation
                                 floor="B2"
                                 path={navFloor === 'B2' ? navPath : []}
-                                className={navFloor === 'B2' ? '' : 'opacity-50'}
+                                className="" // Always visible
                             />
+                            {!isNavigating && renderZones('B2', b2Zones)}
                         </div>
                     </div>
                 </div>
@@ -193,30 +210,21 @@ export default function CategoryMapPage() {
                             icon={cat.icon}
                             label={cat.label}
                             isActive={activeCategory === cat.id}
-                            onClick={() => setActiveCategory(cat.id)}
+                            onClick={() => {
+                                setActiveCategory(cat.id);
+                                setIsNavigating(false); // Reset navigation when picking category
+                                setNavPath([]);
+                                const newParams = new URLSearchParams(searchParams.toString());
+                                newParams.set('category', cat.id);
+                                router.push(`?${newParams.toString()}`);
+                            }}
                         />
                     ))}
                 </div>
             </main>
 
             {/* Bottom Navigation */}
-            <nav className="h-nav bg-white shadow-[0_-2px_8px_rgba(0,0,0,0.06)] flex items-center justify-around">
-                <button className="flex items-center gap-2 text-daiso-red">
-                    <LayoutGrid className="w-6 h-6" />
-                    <span className="font-suite font-bold text-sm">카테고리 지도</span>
-                </button>
-                <button
-                    onClick={() => router.push('/kioskmode')}
-                    className="flex items-center gap-2 text-gray-500 hover:text-gray-700"
-                >
-                    <Sparkles className="w-6 h-6" />
-                    <span className="font-suite text-sm">상품 검색</span>
-                </button>
-                <button className="flex items-center gap-2 text-gray-500 hover:text-gray-700">
-                    <Box className="w-6 h-6" />
-                    <span className="font-suite text-sm">장바구니</span>
-                </button>
-            </nav>
+            <BottomNav />
         </div>
     );
 }

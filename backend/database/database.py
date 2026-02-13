@@ -85,10 +85,21 @@ def init_database():
             name TEXT NOT NULL,
             rect TEXT NOT NULL,
             color TEXT,
+            type TEXT DEFAULT 'zone',
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
     
+    # Add type column if it doesn't exist (for migration)
+    cursor.execute("PRAGMA table_info(map_zones)")
+    columns = [row['name'] for row in cursor.fetchall()]
+    if 'type' not in columns:
+        try:
+            print("Adding type column to map_zones table...")
+            cursor.execute("ALTER TABLE map_zones ADD COLUMN type TEXT DEFAULT 'zone'")
+        except sqlite3.OperationalError as e:
+            print(f"Error adding type column to map_zones: {e}")
+
     conn.commit()
     conn.close()
     print(f"✅ Database initialized: {DB_PATH}")
@@ -269,11 +280,11 @@ def get_map_zones(floor: Optional[str] = None) -> List[Dict]:
     conn.close()
     return [dict(row) for row in rows]
 
-def save_map_zone(floor: str, name: str, rect: str, color: str) -> int:
+def save_map_zone(floor: str, name: str, rect: str, color: str, zone_type: str = 'zone') -> int:
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute('INSERT INTO map_zones (floor, name, rect, color) VALUES (?, ?, ?, ?)', 
-                   (floor, name, rect, color))
+    cursor.execute('INSERT INTO map_zones (floor, name, rect, color, type) VALUES (?, ?, ?, ?, ?)', 
+                   (floor, name, rect, color, zone_type))
     conn.commit()
     last_id = cursor.lastrowid
     conn.close()

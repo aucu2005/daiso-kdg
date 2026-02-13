@@ -1,6 +1,6 @@
 'use client';
 
-import { Search, LayoutGrid, User, ShoppingCart } from 'lucide-react';
+import { Search, Map as MapIcon } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { clsx } from 'clsx';
@@ -13,8 +13,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
     { icon: <Search className="w-6 h-6" />, label: '검색', href: '/kioskmode' },
-    { icon: <LayoutGrid className="w-6 h-6" />, label: '매장지도', href: '/kioskmode/map' },
-    { icon: <User className="w-6 h-6" />, label: 'My', href: '#' },
+    { icon: <MapIcon className="w-6 h-6" />, label: '카테고리/매장지도', href: '/kioskmode/map' },
 ];
 
 export default function BottomNav() {

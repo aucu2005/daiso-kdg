@@ -58,3 +58,1041 @@
 [2026-02-12 17:42:59.235] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
 [2026-02-12 17:42:59.240] [DEBUG] --- [Node: Response] Finalizing ---
 [2026-02-12 17:42:59.243] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 13:28:52.631] [DEBUG] --- [Node: Intent & Keyword] Input: '네스카페' ---
+[2026-02-13 13:28:53.178] [DEBUG] --- [Node: Intent & Keyword] Input: '네스카페' ---
+[2026-02-13 13:28:54.083] [DEBUG] [Intent Gate] '네스카페' → N
+[2026-02-13 13:28:54.085] [DEBUG] [Node: Intent & Keyword] → N (무관한 발화). Skipping NLU.
+[2026-02-13 13:28:54.091] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 13:28:54.212] [DEBUG] [Intent Gate] '네스카페' → N
+[2026-02-13 13:28:54.213] [DEBUG] [Node: Intent & Keyword] → N (무관한 발화). Skipping NLU.
+[2026-02-13 13:28:54.214] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 13:29:10.716] [DEBUG] --- [Node: Intent & Keyword] Input: '세제' ---
+[2026-02-13 13:29:10.720] [DEBUG] --- [Node: Intent & Keyword] Input: '세제' ---
+[2026-02-13 13:29:11.347] [DEBUG] [Intent Gate] '세제' → Y
+[2026-02-13 13:29:11.448] [DEBUG] [Intent Gate] '세제' → Y
+[2026-02-13 13:29:14.352] [DEBUG] [NLU] '세제' → PRODUCT_LOCATION | latency=3003ms
+[2026-02-13 13:29:14.352] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 13:29:14.380] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='세제' ---
+[2026-02-13 13:29:14.448] [DEBUG] [NLU] '세제' → PRODUCT_LOCATION | latency=2999ms
+[2026-02-13 13:29:14.448] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 13:29:14.450] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='세제' ---
+[2026-02-13 13:29:15.220] [DEBUG] [Keyword Expand] '세제' → ['세제', '주방', '세제', '청소용품', '세탁', '얼룩제거']
+[2026-02-13 13:29:15.226] [DEBUG] --- [Node: Hybrid Search] item='세제' / rewrite='세제 종류별 가격비교 세탁세제 주방세제 세정제 섬유유연제 표백제 세탁비누 세척제 세탁조크리' ---
+[2026-02-13 13:29:15.272] [DEBUG] [BM25] '세제' → 5 results
+[2026-02-13 13:29:34.041] [DEBUG] [Vector] '세제 종류별 가격비교 세탁세제 주방세제 세정제 섬유유연제 표백제 세탁비누 세척제 세탁조크리' → 10 results
+[2026-02-13 13:29:34.041] [DEBUG] [RRF] BM25=5(×2) + Vector=10 → Fused=14
+[2026-02-13 13:29:34.044] [DEBUG]     → Final: 14 unique candidates
+[2026-02-13 13:29:34.044] [DEBUG] [Keyword Expand] '세제' → ['세제', '주방', '세제', '세탁', '청소용품', '얼룩제거']
+[2026-02-13 13:29:34.046] [DEBUG] --- [Node: Reranker] Query='세제', 14 candidates ---
+[2026-02-13 13:29:34.048] [DEBUG] --- [Node: Hybrid Search] item='세제' / rewrite='세제 종류별 가격비교 세탁세제 주방세제 세정제 섬유유연제 표백제 세탁비누 세척제 세탁조크리' ---
+[2026-02-13 13:29:34.050] [DEBUG] [BM25] '세제' → 5 results
+[2026-02-13 13:29:34.072] [DEBUG] [Vector] '세제 종류별 가격비교 세탁세제 주방세제 세정제 섬유유연제 표백제 세탁비누 세척제 세탁조크리' → 10 results
+[2026-02-13 13:29:34.073] [DEBUG] [RRF] BM25=5(×2) + Vector=10 → Fused=14
+[2026-02-13 13:29:34.074] [DEBUG]     → Final: 14 unique candidates
+[2026-02-13 13:29:34.076] [DEBUG] --- [Node: Reranker] Query='세제', 14 candidates ---
+[2026-02-13 13:29:35.197] [DEBUG] [Reranker] Query='세제' → selected=101 | reason='세탁세제에 대한 일반적인 검색어이므로, 가장 보편적인 세탁 세제 제품을 선택합니다....' | latency=1.150s
+[2026-02-13 13:29:35.199] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 13:29:35.200] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 13:29:36.099] [DEBUG] [Reranker] Query='세제' → selected=101 | reason='세제에 대한 일반적인 검색어이므로, 가장 보편적인 세탁 세제를 선택했습니다....' | latency=2.023s
+[2026-02-13 13:29:36.105] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 13:29:36.109] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 13:37:41.600] [DEBUG] --- [Node: Intent & Keyword] Input: '새우깡' ---
+[2026-02-13 13:37:42.002] [DEBUG] --- [Node: Intent & Keyword] Input: '새우깡' ---
+[2026-02-13 13:37:42.839] [DEBUG] [Intent Gate] '새우깡' → Y
+[2026-02-13 13:37:43.023] [DEBUG] [Intent Gate] '새우깡' → Y
+[2026-02-13 13:37:45.577] [DEBUG] [NLU] '새우깡' → PRODUCT_LOCATION | latency=2736ms
+[2026-02-13 13:37:45.579] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 13:37:45.580] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='새우깡' ---
+[2026-02-13 13:37:45.986] [DEBUG] [NLU] '새우깡' → PRODUCT_LOCATION | latency=2960ms
+[2026-02-13 13:37:45.990] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 13:37:45.992] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='새우깡' ---
+[2026-02-13 13:37:46.392] [DEBUG] [Keyword Expand] '새우깡' → ['새우깡', '과자']
+[2026-02-13 13:37:46.398] [DEBUG] --- [Node: Hybrid Search] item='새우깡' / rewrite='새우깡 스낵 과자 간식 코너 위치 재고 갯수 파는곳 어디 있나요 보관법 유통기한 가격 얼마' ---
+[2026-02-13 13:37:46.450] [DEBUG] [BM25] '새우깡' → 0 results
+[2026-02-13 13:37:57.202] [DEBUG] [Vector] '새우깡 스낵 과자 간식 코너 위치 재고 갯수 파는곳 어디 있나요 보관법 유통기한 가격 얼마' → 10 results
+[2026-02-13 13:37:57.204] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 13:37:57.205] [DEBUG] [Keyword Expand] '새우깡' → ['새우깡', '스낵', '식품', '간식']
+[2026-02-13 13:37:57.207] [DEBUG] --- [Node: Reranker] Query='새우깡', 10 candidates ---
+[2026-02-13 13:37:57.209] [DEBUG] --- [Node: Hybrid Search] item='새우깡' / rewrite='새우깡 스낵 과자 간식 코너 위치 재고 갯수 파는곳 어디 있나요 보관법 유통기한 가격 얼마' ---
+[2026-02-13 13:37:57.213] [DEBUG] [BM25] '새우깡' → 0 results
+[2026-02-13 13:37:57.238] [DEBUG] [Vector] '새우깡 스낵 과자 간식 코너 위치 재고 갯수 파는곳 어디 있나요 보관법 유통기한 가격 얼마' → 10 results
+[2026-02-13 13:37:57.240] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 13:37:57.241] [DEBUG] --- [Node: Reranker] Query='새우깡', 10 candidates ---
+[2026-02-13 13:37:58.256] [DEBUG] [Reranker] Query='새우깡' → selected=318 | reason='새우깡은 스낵의 일종이며, 후보군 중 '칠리콘 스낵'이 가장 관련성이 높습니다....' | latency=1.049s
+[2026-02-13 13:37:58.259] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 13:37:58.260] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 13:37:58.570] [DEBUG] [Reranker] Query='새우깡' → selected=318 | reason='새우깡은 스낵의 한 종류이며, 후보군 중 '동아 이브로 칠리콘 스낵 75 g'이 스낵에 해...' | latency=1.329s
+[2026-02-13 13:37:58.572] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 13:37:58.574] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 13:41:19.496] [DEBUG] --- [Node: Intent & Keyword] Input: '새우깡' ---
+[2026-02-13 13:41:19.498] [DEBUG] --- [Node: Intent & Keyword] Input: '새우깡' ---
+[2026-02-13 13:41:20.207] [DEBUG] [Intent Gate] '새우깡' → Y
+[2026-02-13 13:41:22.635] [DEBUG] [NLU] '새우깡' → PRODUCT_LOCATION | latency=2425ms
+[2026-02-13 13:41:22.636] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 13:41:22.637] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='새우깡' ---
+[2026-02-13 13:41:23.728] [DEBUG] [Keyword Expand] '새우깡' → ['새우깡', '과자', '식품']
+[2026-02-13 13:41:23.732] [DEBUG] --- [Node: Hybrid Search] item='새우깡' / rewrite='새우깡 스낵 과자 간식 코너 위치 재고 갯수 파는곳 판매여부 영업시간 가격 얼마에요 싸요' ---
+[2026-02-13 13:41:23.739] [DEBUG] [BM25] '새우깡' → 0 results
+[2026-02-13 13:41:23.779] [DEBUG] [Vector] '새우깡 스낵 과자 간식 코너 위치 재고 갯수 파는곳 판매여부 영업시간 가격 얼마에요 싸요' → 10 results
+[2026-02-13 13:41:23.783] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 13:41:23.785] [DEBUG] --- [Node: Reranker] Query='새우깡', 10 candidates ---
+[2026-02-13 13:41:25.021] [DEBUG] [Reranker] Query='새우깡' → selected=None | reason='제공된 상품 목록에 '새우깡'이 없습니다. 모두 건강 보조 식품, 주방 용품 등 관련 없는...' | latency=1.237s
+[2026-02-13 13:41:25.027] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? True ---
+[2026-02-13 13:41:25.029] [DEBUG] --- [Node: Clarification] Generating question ---
+[2026-02-13 13:41:26.122] [DEBUG] [Node: Clarification] Question: '새우깡은 저희 다이소에서 판매하고 있지 않습니다. 혹시 다른 과자나 간식을 찾으시나요? 아니면 혹시 다른 종...'
+[2026-02-13 13:41:43.229] [DEBUG] [Intent Gate] '새우깡' → Y
+[2026-02-13 13:41:45.882] [DEBUG] [NLU] '새우깡' → PRODUCT_LOCATION | latency=2650ms
+[2026-02-13 13:41:45.883] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 13:41:45.883] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='새우깡' ---
+[2026-02-13 13:41:46.681] [DEBUG] [Keyword Expand] '새우깡' → ['새우깡', '스낵', '식품', '과자']
+[2026-02-13 13:41:46.685] [DEBUG] --- [Node: Hybrid Search] item='새우깡' / rewrite='새우깡 스낵 과자 간식 코너 위치 재고 갯수 파는곳 어디 있나요 보관법 유통기한 가격 얼마' ---
+[2026-02-13 13:41:46.692] [DEBUG] [BM25] '새우깡' → 0 results
+[2026-02-13 13:41:46.724] [DEBUG] [Vector] '새우깡 스낵 과자 간식 코너 위치 재고 갯수 파는곳 어디 있나요 보관법 유통기한 가격 얼마' → 10 results
+[2026-02-13 13:41:46.726] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 13:41:46.728] [DEBUG] --- [Node: Reranker] Query='새우깡', 10 candidates ---
+[2026-02-13 13:41:47.854] [DEBUG] [Reranker] Query='새우깡' → selected=318 | reason='새우깡은 롯데에서 나오는 스낵의 상품명이며, 후보군 중 '칠리콘 스낵'이 가장 유사한 과자...' | latency=1.126s
+[2026-02-13 13:41:47.861] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 13:41:47.865] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 13:43:07.520] [DEBUG] --- [Node: Intent & Keyword] Input: '새우깡' ---
+[2026-02-13 13:43:07.528] [DEBUG] --- [Node: Intent & Keyword] Input: '새우깡' ---
+[2026-02-13 13:43:08.395] [DEBUG] [Intent Gate] '새우깡' → Y
+[2026-02-13 13:43:08.398] [DEBUG] [Intent Gate] '새우깡' → Y
+[2026-02-13 13:43:10.950] [DEBUG] [NLU] '새우깡' → PRODUCT_LOCATION | latency=2554ms
+[2026-02-13 13:43:10.951] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 13:43:10.952] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='새우깡' ---
+[2026-02-13 13:43:11.014] [DEBUG] [NLU] '새우깡' → PRODUCT_LOCATION | latency=2614ms
+[2026-02-13 13:43:11.014] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 13:43:11.014] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='새우깡' ---
+[2026-02-13 13:43:11.633] [DEBUG] [Keyword Expand] '새우깡' → ['새우깡', '스낵', '식품']
+[2026-02-13 13:43:11.637] [DEBUG] --- [Node: Hybrid Search] item='새우깡' / rewrite='새우깡 스낵 과자 간식 코너 위치 재고 갯수 파는곳 판매여부 영업시간 가격 얼마에요 싸요' ---
+[2026-02-13 13:43:11.646] [DEBUG] [BM25] '새우깡' → 0 results
+[2026-02-13 13:43:11.682] [DEBUG] [Vector] '새우깡 스낵 과자 간식 코너 위치 재고 갯수 파는곳 판매여부 영업시간 가격 얼마에요 싸요' → 10 results
+[2026-02-13 13:43:11.684] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 13:43:11.685] [DEBUG] --- [Node: Reranker] Query='새우깡', 10 candidates ---
+[2026-02-13 13:43:11.818] [DEBUG] [Keyword Expand] '새우깡' → ['새우깡', '과자']
+[2026-02-13 13:43:11.820] [DEBUG] --- [Node: Hybrid Search] item='새우깡' / rewrite='새우깡 스낵 과자 간식 코너 위치 재고 갯수 파는곳 판매여부 영업시간 가격 얼마에요 싸요' ---
+[2026-02-13 13:43:11.822] [DEBUG] [BM25] '새우깡' → 0 results
+[2026-02-13 13:43:11.846] [DEBUG] [Vector] '새우깡 스낵 과자 간식 코너 위치 재고 갯수 파는곳 판매여부 영업시간 가격 얼마에요 싸요' → 10 results
+[2026-02-13 13:43:11.848] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 13:43:11.849] [DEBUG] --- [Node: Reranker] Query='새우깡', 10 candidates ---
+[2026-02-13 13:43:12.816] [DEBUG] [Reranker] Query='새우깡' → selected=None | reason='제공된 상품 목록에 '새우깡'이 없습니다. 모든 상품이 건강 보조제, 청소 용품, 혹은 바...' | latency=1.130s
+[2026-02-13 13:43:12.824] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? True ---
+[2026-02-13 13:43:12.828] [DEBUG] --- [Node: Clarification] Generating question ---
+[2026-02-13 13:43:13.011] [DEBUG] [Reranker] Query='새우깡' → selected=None | reason='제공된 후보 제품 목록에 '새우깡'이 없습니다. 모두 건강 보조제, 청소 용품, 혹은 바스...' | latency=1.161s
+[2026-02-13 13:43:13.022] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? True ---
+[2026-02-13 13:43:13.028] [DEBUG] --- [Node: Clarification] Generating question ---
+[2026-02-13 13:43:14.215] [DEBUG] [Node: Clarification] Question: '새우깡은 저희 다이소에서 판매하는 상품이 아닙니다. 혹시 다른 종류의 과자나 간식을 찾으시나요? 아니면 다른...'
+[2026-02-13 13:43:14.982] [DEBUG] [Node: Clarification] Question: '새우깡은 현재 저희 매장에서 찾으시는 종류가 다양한 상품으로 준비되어 있지 않습니다. 혹시 다른 **스낵, ...'
+[2026-02-13 14:05:46.560] [DEBUG] --- [Node: Intent & Keyword] Input: '세제' ---
+[2026-02-13 14:05:46.569] [DEBUG] --- [Node: Intent & Keyword] Input: '세제' ---
+[2026-02-13 14:05:47.352] [DEBUG] [Intent Gate] '세제' → Y
+[2026-02-13 14:05:47.568] [DEBUG] [Intent Gate] '세제' → Y
+[2026-02-13 14:05:49.980] [DEBUG] [NLU] '세제' → PRODUCT_LOCATION | latency=2409ms
+[2026-02-13 14:05:49.981] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:05:49.982] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='세제' ---
+[2026-02-13 14:05:50.080] [DEBUG] [NLU] '세제' → PRODUCT_LOCATION | latency=2726ms
+[2026-02-13 14:05:50.083] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:05:50.086] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='세제' ---
+[2026-02-13 14:05:50.866] [DEBUG] [Keyword Expand] '세제' → ['세제', '주방', '세제', '청소용품', '세탁세제', '찌든때 제거', '얼룩 제거']
+[2026-02-13 14:05:50.868] [DEBUG] --- [Node: Hybrid Search] item='세제' / rewrite='세제 종류별 가격 비교 세탁세제 주방세제 세정제 다이소 세제 위치 추천 성분 효과 친환경' ---
+[2026-02-13 14:05:50.870] [DEBUG] [BM25] '세제' → 5 results
+[2026-02-13 14:05:50.938] [DEBUG] [Vector] '세제 종류별 가격 비교 세탁세제 주방세제 세정제 다이소 세제 위치 추천 성분 효과 친환경' → 10 results
+[2026-02-13 14:05:50.939] [DEBUG] [RRF] BM25=5(×2) + Vector=10 → Fused=13
+[2026-02-13 14:05:50.939] [DEBUG]     → Final: 13 unique candidates
+[2026-02-13 14:05:50.942] [DEBUG] --- [Node: Reranker] Query='세제', 13 candidates ---
+[2026-02-13 14:05:51.058] [DEBUG] [Keyword Expand] '세제' → ['세제', '주방', '세정제', '청소용품', '세척']
+[2026-02-13 14:05:51.059] [DEBUG] --- [Node: Hybrid Search] item='세제' / rewrite='세제 종류별 가격비교 세탁세제 주방세제 세정제 섬유유연제 표백제 세탁비누 세척제 세탁조크리' ---
+[2026-02-13 14:05:51.060] [DEBUG] [BM25] '세제' → 5 results
+[2026-02-13 14:05:51.084] [DEBUG] [Vector] '세제 종류별 가격비교 세탁세제 주방세제 세정제 섬유유연제 표백제 세탁비누 세척제 세탁조크리' → 10 results
+[2026-02-13 14:05:51.085] [DEBUG] [RRF] BM25=5(×2) + Vector=10 → Fused=14
+[2026-02-13 14:05:51.087] [DEBUG]     → Final: 14 unique candidates
+[2026-02-13 14:05:51.088] [DEBUG] --- [Node: Reranker] Query='세제', 14 candidates ---
+[2026-02-13 14:05:52.046] [DEBUG] [Reranker] Query='세제' → selected=101 | reason='세탁세제, 주방세제, 세탁조 크리너 등이 있지만, 가장 일반적인 세제는 세탁 세제이므로 I...' | latency=1.102s
+[2026-02-13 14:05:52.054] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:05:52.060] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:05:52.153] [DEBUG] [Reranker] Query='세제' → selected=101 | reason='세제에 대한 일반적인 검색어이므로, 가장 보편적인 세탁 세제를 선택합니다....' | latency=1.064s
+[2026-02-13 14:05:52.156] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:05:52.157] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:05:59.964] [DEBUG] --- [Node: Intent & Keyword] Input: '세제' ---
+[2026-02-13 14:05:59.973] [DEBUG] --- [Node: Intent & Keyword] Input: '세제' ---
+[2026-02-13 14:06:00.576] [DEBUG] [Intent Gate] '세제' → Y
+[2026-02-13 14:06:00.691] [DEBUG] [Intent Gate] '세제' → Y
+[2026-02-13 14:06:03.086] [DEBUG] [NLU] '세제' → PRODUCT_LOCATION | latency=2508ms
+[2026-02-13 14:06:03.087] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:06:03.089] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='세제' ---
+[2026-02-13 14:06:03.386] [DEBUG] [NLU] '세제' → PRODUCT_LOCATION | latency=2694ms
+[2026-02-13 14:06:03.387] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:06:03.388] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='세제' ---
+[2026-02-13 14:06:04.086] [DEBUG] [Keyword Expand] '세제' → ['세제', '주방', '세정제', '생활용품', '청소', '얼룩제거']
+[2026-02-13 14:06:04.091] [DEBUG] --- [Node: Hybrid Search] item='세제' / rewrite='세제 종류별 가격 비교 세탁세제 주방세제 세정제 다이소 세제 위치 추천 성분 효과 친환경' ---
+[2026-02-13 14:06:04.097] [DEBUG] [BM25] '세제' → 5 results
+[2026-02-13 14:06:04.149] [DEBUG] [Vector] '세제 종류별 가격 비교 세탁세제 주방세제 세정제 다이소 세제 위치 추천 성분 효과 친환경' → 10 results
+[2026-02-13 14:06:04.150] [DEBUG] [RRF] BM25=5(×2) + Vector=10 → Fused=13
+[2026-02-13 14:06:04.152] [DEBUG]     → Final: 13 unique candidates
+[2026-02-13 14:06:04.152] [DEBUG] --- [Node: Reranker] Query='세제', 13 candidates ---
+[2026-02-13 14:06:04.201] [DEBUG] [Keyword Expand] '세제' → ['세제', '주방', '세정제', '청소용품', '세척']
+[2026-02-13 14:06:04.202] [DEBUG] --- [Node: Hybrid Search] item='세제' / rewrite='세제 종류별 가격비교 세탁세제 주방세제 세정제 섬유유연제 표백제 세탁비누 세척제 세탁조크리' ---
+[2026-02-13 14:06:04.204] [DEBUG] [BM25] '세제' → 5 results
+[2026-02-13 14:06:04.227] [DEBUG] [Vector] '세제 종류별 가격비교 세탁세제 주방세제 세정제 섬유유연제 표백제 세탁비누 세척제 세탁조크리' → 10 results
+[2026-02-13 14:06:04.228] [DEBUG] [RRF] BM25=5(×2) + Vector=10 → Fused=14
+[2026-02-13 14:06:04.230] [DEBUG]     → Final: 14 unique candidates
+[2026-02-13 14:06:04.230] [DEBUG] --- [Node: Reranker] Query='세제', 14 candidates ---
+[2026-02-13 14:06:05.195] [DEBUG] [Reranker] Query='세제' → selected=101 | reason='세제 종류가 다양하게 있지만, 가장 일반적인 세탁 세제를 선택했습니다....' | latency=0.965s
+[2026-02-13 14:06:05.198] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:06:05.200] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:06:05.238] [DEBUG] [Reranker] Query='세제' → selected=101 | reason='세탁 세제, 주방 세제, 세탁조 크리너 등 여러 세제 종류가 있지만, 가장 일반적인 세탁 ...' | latency=1.085s
+[2026-02-13 14:06:05.241] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:06:05.242] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:06:07.493] [DEBUG] --- [Node: Intent & Keyword] Input: '새우깡' ---
+[2026-02-13 14:06:07.502] [DEBUG] --- [Node: Intent & Keyword] Input: '새우깡' ---
+[2026-02-13 14:06:08.189] [DEBUG] [Intent Gate] '새우깡' → Y
+[2026-02-13 14:06:08.195] [DEBUG] [Intent Gate] '새우깡' → Y
+[2026-02-13 14:06:10.542] [DEBUG] [NLU] '새우깡' → PRODUCT_LOCATION | latency=2351ms
+[2026-02-13 14:06:10.543] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:06:10.544] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='새우깡' ---
+[2026-02-13 14:06:10.842] [DEBUG] [NLU] '새우깡' → PRODUCT_LOCATION | latency=2644ms
+[2026-02-13 14:06:10.844] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:06:10.847] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='새우깡' ---
+[2026-02-13 14:06:10.947] [DEBUG] --- [Node: Intent & Keyword] Input: '마스크팩' ---
+[2026-02-13 14:06:10.953] [DEBUG] --- [Node: Intent & Keyword] Input: '마스크팩' ---
+[2026-02-13 14:06:11.359] [DEBUG] [Keyword Expand] '새우깡' → ['새우깡', '과자', '스낵', '식품']
+[2026-02-13 14:06:11.367] [DEBUG] --- [Node: Hybrid Search] item='새우깡' / rewrite='새우깡 스낵 과자 간식 코너 위치 재고 갯수 파는곳 판매여부 영업시간 가격 얼마에요 싸요' ---
+[2026-02-13 14:06:11.376] [DEBUG] [BM25] '새우깡' → 0 results
+[2026-02-13 14:06:11.405] [DEBUG] [Vector] '새우깡 스낵 과자 간식 코너 위치 재고 갯수 파는곳 판매여부 영업시간 가격 얼마에요 싸요' → 10 results
+[2026-02-13 14:06:11.408] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 14:06:11.409] [DEBUG] --- [Node: Reranker] Query='새우깡', 10 candidates ---
+[2026-02-13 14:06:11.556] [DEBUG] [Keyword Expand] '새우깡' → ['새우깡', '과자']
+[2026-02-13 14:06:11.557] [DEBUG] --- [Node: Hybrid Search] item='새우깡' / rewrite='새우깡 스낵 과자 간식 코너 위치 재고 갯수 파는곳 판매여부 영업시간 가격 얼마에요 싸요' ---
+[2026-02-13 14:06:11.560] [DEBUG] [BM25] '새우깡' → 0 results
+[2026-02-13 14:06:11.583] [DEBUG] [Vector] '새우깡 스낵 과자 간식 코너 위치 재고 갯수 파는곳 판매여부 영업시간 가격 얼마에요 싸요' → 10 results
+[2026-02-13 14:06:11.585] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 14:06:11.586] [DEBUG] --- [Node: Reranker] Query='새우깡', 10 candidates ---
+[2026-02-13 14:06:11.660] [DEBUG] [Intent Gate] '마스크팩' → Y
+[2026-02-13 14:06:11.758] [DEBUG] [Intent Gate] '마스크팩' → Y
+[2026-02-13 14:06:12.441] [DEBUG] [Reranker] Query='새우깡' → selected=None | reason='제공된 상품 목록에 '새우깡'이 없습니다. 모두 건강 보조 식품, 청소용품, 혹은 바스켓입...' | latency=1.032s
+[2026-02-13 14:06:12.444] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? True ---
+[2026-02-13 14:06:12.446] [DEBUG] --- [Node: Clarification] Generating question ---
+[2026-02-13 14:06:12.719] [DEBUG] [Reranker] Query='새우깡' → selected=None | reason='제공된 후보군에 '새우깡' 과 관련된 상품이 없습니다. 모든 상품이 건강보조식품, 청소용품...' | latency=1.132s
+[2026-02-13 14:06:12.722] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? True ---
+[2026-02-13 14:06:12.725] [DEBUG] --- [Node: Clarification] Generating question ---
+[2026-02-13 14:06:13.815] [DEBUG] [Node: Clarification] Question: '새우깡은 현재 저희 매장에서 찾으시는 종류가 아닌 것 같습니다. 혹시 다른 스낵이나 과자를 찾으시나요? 아니...'
+[2026-02-13 14:06:13.818] [DEBUG] [Node: Clarification] Question: '고객님, 찾으시는 새우깡은 과자 종류로, 현재 저희 매장에는 건강기능식품이나 물티슈 종류만 검색됩니다. 혹시...'
+[2026-02-13 14:06:13.929] [DEBUG] [NLU] '마스크팩' → PRODUCT_LOCATION | latency=2267ms
+[2026-02-13 14:06:13.930] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:06:13.930] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='마스크팩' ---
+[2026-02-13 14:06:14.035] [DEBUG] [NLU] '마스크팩' → PRODUCT_LOCATION | latency=2276ms
+[2026-02-13 14:06:14.037] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:06:14.038] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='마스크팩' ---
+[2026-02-13 14:06:14.741] [DEBUG] [Keyword Expand] '마스크팩' → ['마스크팩', '피부', '팩', '미용', '피부관리', '보습']
+[2026-02-13 14:06:14.743] [DEBUG] --- [Node: Hybrid Search] item='마스크팩' / rewrite='마스크팩 종류별 추천 순위별 마스크팩 싸게 파는 곳 저렴이 마스크팩 마스크팩 효과 마스크팩' ---
+[2026-02-13 14:06:14.745] [DEBUG] [BM25] '마스크팩' → 7 results
+[2026-02-13 14:06:14.795] [DEBUG] [Vector] '마스크팩 종류별 추천 순위별 마스크팩 싸게 파는 곳 저렴이 마스크팩 마스크팩 효과 마스크팩' → 10 results
+[2026-02-13 14:06:14.795] [DEBUG] [RRF] BM25=7(×2) + Vector=10 → Fused=15
+[2026-02-13 14:06:14.797] [DEBUG]     → Final: 15 unique candidates
+[2026-02-13 14:06:14.798] [DEBUG] --- [Node: Reranker] Query='마스크팩', 15 candidates ---
+[2026-02-13 14:06:14.948] [DEBUG] [Keyword Expand] '마스크팩' → ['마스크팩', '피부', '팩', '미용', '피부관리']
+[2026-02-13 14:06:14.950] [DEBUG] --- [Node: Hybrid Search] item='마스크팩' / rewrite='마스크팩 추천 보습 진정 미백 마스크팩 종류별 가격별 비교 마스크팩 효과 마스크팩 사용법' ---
+[2026-02-13 14:06:14.951] [DEBUG] [BM25] '마스크팩' → 7 results
+[2026-02-13 14:06:14.981] [DEBUG] [Vector] '마스크팩 추천 보습 진정 미백 마스크팩 종류별 가격별 비교 마스크팩 효과 마스크팩 사용법' → 10 results
+[2026-02-13 14:06:14.981] [DEBUG] [RRF] BM25=7(×2) + Vector=10 → Fused=13
+[2026-02-13 14:06:14.983] [DEBUG]     → Final: 13 unique candidates
+[2026-02-13 14:06:14.984] [DEBUG] --- [Node: Reranker] Query='마스크팩', 13 candidates ---
+[2026-02-13 14:06:15.961] [DEBUG] [Reranker] Query='마스크팩' → selected=110 | reason='사용자가 마스크팩을 찾고 있으며, '바세린 마스크팩 수분충전'이 가장 일반적인 마스크팩 종...' | latency=1.162s
+[2026-02-13 14:06:15.964] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:06:15.966] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:06:16.066] [DEBUG] [Reranker] Query='마스크팩' → selected=513 | reason='사용자가 마스크팩을 찾고 있으며, 후보군 중 가장 일반적인 시트 마스크팩인 '바세린 탱탱 ...' | latency=1.082s
+[2026-02-13 14:06:16.071] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:06:16.074] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:06:21.948] [DEBUG] --- [Node: Intent & Keyword] Input: '마스크팩' ---
+[2026-02-13 14:06:21.954] [DEBUG] --- [Node: Intent & Keyword] Input: '마스크팩' ---
+[2026-02-13 14:06:22.651] [DEBUG] [Intent Gate] '마스크팩' → Y
+[2026-02-13 14:06:22.847] [DEBUG] [Intent Gate] '마스크팩' → Y
+[2026-02-13 14:06:24.925] [DEBUG] [NLU] '마스크팩' → PRODUCT_LOCATION | latency=2272ms
+[2026-02-13 14:06:24.926] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:06:24.928] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='마스크팩' ---
+[2026-02-13 14:06:25.119] [DEBUG] [NLU] '마스크팩' → PRODUCT_LOCATION | latency=2270ms
+[2026-02-13 14:06:25.120] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:06:25.121] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='마스크팩' ---
+[2026-02-13 14:06:25.787] [DEBUG] [Keyword Expand] '마스크팩' → ['마스크팩', '피부', '팩', '미용', '피부관리']
+[2026-02-13 14:06:25.792] [DEBUG] --- [Node: Hybrid Search] item='마스크팩' / rewrite='마스크팩 종류별 추천 순위별 마스크팩 싸게 파는 곳 저렴이 마스크팩 마스크팩 효과 마스크팩' ---
+[2026-02-13 14:06:25.797] [DEBUG] [BM25] '마스크팩' → 7 results
+[2026-02-13 14:06:25.839] [DEBUG] [Vector] '마스크팩 종류별 추천 순위별 마스크팩 싸게 파는 곳 저렴이 마스크팩 마스크팩 효과 마스크팩' → 10 results
+[2026-02-13 14:06:25.840] [DEBUG] [RRF] BM25=7(×2) + Vector=10 → Fused=15
+[2026-02-13 14:06:25.842] [DEBUG]     → Final: 15 unique candidates
+[2026-02-13 14:06:25.844] [DEBUG] --- [Node: Reranker] Query='마스크팩', 15 candidates ---
+[2026-02-13 14:06:25.870] [DEBUG] [Keyword Expand] '마스크팩' → ['마스크팩', '피부', '팩', '미용', '피부관리']
+[2026-02-13 14:06:25.873] [DEBUG] --- [Node: Hybrid Search] item='마스크팩' / rewrite='마스크팩 종류별 추천 순위별 마스크팩 싸게 파는 곳 저렴이 마스크팩 마스크팩 효과 마스크팩' ---
+[2026-02-13 14:06:25.874] [DEBUG] [BM25] '마스크팩' → 7 results
+[2026-02-13 14:06:25.895] [DEBUG] [Vector] '마스크팩 종류별 추천 순위별 마스크팩 싸게 파는 곳 저렴이 마스크팩 마스크팩 효과 마스크팩' → 10 results
+[2026-02-13 14:06:25.895] [DEBUG] [RRF] BM25=7(×2) + Vector=10 → Fused=15
+[2026-02-13 14:06:25.898] [DEBUG]     → Final: 15 unique candidates
+[2026-02-13 14:06:25.899] [DEBUG] --- [Node: Reranker] Query='마스크팩', 15 candidates ---
+[2026-02-13 14:06:26.981] [DEBUG] [Reranker] Query='마스크팩' → selected=110 | reason='사용자가 마스크팩을 찾고 있으며, 바세린 마스크팩 수분충전이 가장 적합한 상품으로 판단됩니...' | latency=1.137s
+[2026-02-13 14:06:26.985] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:06:26.987] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:06:27.429] [DEBUG] [Reranker] Query='마스크팩' → selected=110 | reason='사용자가 마스크팩을 찾고 있으며, 바세린 마스크팩 수분충전이 가장 적합한 제품입니다. 다른...' | latency=1.528s
+[2026-02-13 14:06:27.439] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:06:27.443] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:06:28.030] [DEBUG] --- [Node: Intent & Keyword] Input: '마스크팩' ---
+[2026-02-13 14:06:28.038] [DEBUG] --- [Node: Intent & Keyword] Input: '마스크팩' ---
+[2026-02-13 14:06:28.696] [DEBUG] [Intent Gate] '마스크팩' → Y
+[2026-02-13 14:06:28.901] [DEBUG] [Intent Gate] '마스크팩' → Y
+[2026-02-13 14:06:31.060] [DEBUG] [NLU] '마스크팩' → PRODUCT_LOCATION | latency=2362ms
+[2026-02-13 14:06:31.063] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:06:31.066] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='마스크팩' ---
+[2026-02-13 14:06:31.157] [DEBUG] [NLU] '마스크팩' → PRODUCT_LOCATION | latency=2254ms
+[2026-02-13 14:06:31.158] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:06:31.159] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='마스크팩' ---
+[2026-02-13 14:06:31.941] [DEBUG] [Keyword Expand] '마스크팩' → ['마스크팩', '피부', '팩', '미용', '피부관리', '수분공급']
+[2026-02-13 14:06:31.948] [DEBUG] --- [Node: Hybrid Search] item='마스크팩' / rewrite='마스크팩 종류별 추천 순위별 마스크팩 싸게 파는 곳 저렴이 마스크팩 마스크팩 효과 마스크팩' ---
+[2026-02-13 14:06:31.949] [DEBUG] [BM25] '마스크팩' → 7 results
+[2026-02-13 14:06:31.972] [DEBUG] [Vector] '마스크팩 종류별 추천 순위별 마스크팩 싸게 파는 곳 저렴이 마스크팩 마스크팩 효과 마스크팩' → 10 results
+[2026-02-13 14:06:31.973] [DEBUG] [RRF] BM25=7(×2) + Vector=10 → Fused=15
+[2026-02-13 14:06:31.975] [DEBUG]     → Final: 15 unique candidates
+[2026-02-13 14:06:31.976] [DEBUG] --- [Node: Reranker] Query='마스크팩', 15 candidates ---
+[2026-02-13 14:06:32.146] [DEBUG] [Keyword Expand] '마스크팩' → ['마스크팩', '피부', '팩', '화장품', '피부관리']
+[2026-02-13 14:06:32.148] [DEBUG] --- [Node: Hybrid Search] item='마스크팩' / rewrite='마스크팩 추천 보습 진정 미백 마스크팩 종류별 가격별 비교 마스크팩 효과 마스크팩 사용법' ---
+[2026-02-13 14:06:32.149] [DEBUG] [BM25] '마스크팩' → 7 results
+[2026-02-13 14:06:32.171] [DEBUG] [Vector] '마스크팩 추천 보습 진정 미백 마스크팩 종류별 가격별 비교 마스크팩 효과 마스크팩 사용법' → 10 results
+[2026-02-13 14:06:32.172] [DEBUG] [RRF] BM25=7(×2) + Vector=10 → Fused=13
+[2026-02-13 14:06:32.173] [DEBUG]     → Final: 13 unique candidates
+[2026-02-13 14:06:32.175] [DEBUG] --- [Node: Reranker] Query='마스크팩', 13 candidates ---
+[2026-02-13 14:06:33.034] [DEBUG] [Reranker] Query='마스크팩' → selected=515 | reason='사용자가 마스크팩을 찾고 있으며, 여러 후보 중 '팩미인 하이드로겔 브이 마스크팩'이 가장...' | latency=1.058s
+[2026-02-13 14:06:33.037] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:06:33.038] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:06:33.144] [DEBUG] [Reranker] Query='마스크팩' → selected=513 | reason='여러 마스크팩 중에서 '바세린 탱탱 시트 마스크팩'이 가장 일반적인 마스크팩 종류를 나타내...' | latency=0.969s
+[2026-02-13 14:06:33.152] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:06:33.157] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:06:42.595] [DEBUG] --- [Node: Intent & Keyword] Input: '마스크팩' ---
+[2026-02-13 14:06:42.916] [DEBUG] --- [Node: Intent & Keyword] Input: '마스크팩' ---
+[2026-02-13 14:06:43.259] [DEBUG] [Intent Gate] '마스크팩' → Y
+[2026-02-13 14:06:43.558] [DEBUG] [Intent Gate] '마스크팩' → Y
+[2026-02-13 14:06:45.394] [DEBUG] [NLU] '마스크팩' → PRODUCT_LOCATION | latency=2133ms
+[2026-02-13 14:06:45.395] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:06:45.396] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='마스크팩' ---
+[2026-02-13 14:06:45.581] [DEBUG] [NLU] '마스크팩' → PRODUCT_LOCATION | latency=2020ms
+[2026-02-13 14:06:45.583] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:06:45.585] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='마스크팩' ---
+[2026-02-13 14:06:46.348] [DEBUG] [Keyword Expand] '마스크팩' → ['마스크팩', '피부', '팩', '미용', '피부관리']
+[2026-02-13 14:06:46.356] [DEBUG] --- [Node: Hybrid Search] item='마스크팩' / rewrite='마스크팩 추천 보습 진정 미백 마스크팩 종류별 가격별 비교 마스크팩 효과 마스크팩 사용법' ---
+[2026-02-13 14:06:46.363] [DEBUG] [BM25] '마스크팩' → 7 results
+[2026-02-13 14:06:46.394] [DEBUG] [Vector] '마스크팩 추천 보습 진정 미백 마스크팩 종류별 가격별 비교 마스크팩 효과 마스크팩 사용법' → 10 results
+[2026-02-13 14:06:46.395] [DEBUG] [RRF] BM25=7(×2) + Vector=10 → Fused=13
+[2026-02-13 14:06:46.397] [DEBUG]     → Final: 13 unique candidates
+[2026-02-13 14:06:46.399] [DEBUG] [Keyword Expand] '마스크팩' → ['마스크팩', '얼굴', '팩', '미용', '피부관리', '수분', '진정']
+[2026-02-13 14:06:46.400] [DEBUG] --- [Node: Reranker] Query='마스크팩', 13 candidates ---
+[2026-02-13 14:06:46.402] [DEBUG] --- [Node: Hybrid Search] item='마스크팩' / rewrite='마스크팩 추천 보습 진정 미백 마스크팩 종류별 가격별 비교 마스크팩 효과 마스크팩 사용법' ---
+[2026-02-13 14:06:46.403] [DEBUG] [BM25] '마스크팩' → 7 results
+[2026-02-13 14:06:46.426] [DEBUG] [Vector] '마스크팩 추천 보습 진정 미백 마스크팩 종류별 가격별 비교 마스크팩 효과 마스크팩 사용법' → 10 results
+[2026-02-13 14:06:46.427] [DEBUG] [RRF] BM25=7(×2) + Vector=10 → Fused=13
+[2026-02-13 14:06:46.428] [DEBUG]     → Final: 13 unique candidates
+[2026-02-13 14:06:46.430] [DEBUG] --- [Node: Reranker] Query='마스크팩', 13 candidates ---
+[2026-02-13 14:06:47.345] [DEBUG] [Reranker] Query='마스크팩' → selected=513 | reason='여러 마스크팩 제품 중에서 가장 일반적인 시트 마스크팩 제품입니다....' | latency=0.945s
+[2026-02-13 14:06:47.348] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:06:47.349] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:06:48.029] [DEBUG] [Reranker] Query='마스크팩' → selected=513 | reason='다양한 마스크팩 제품 중에서 가장 일반적인 시트 마스크팩을 선택했습니다. 다른 제품들은 특...' | latency=1.599s
+[2026-02-13 14:06:48.030] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:06:48.030] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:20:32.332] [DEBUG] --- [Node: Intent & Keyword] Input: '마스크팩' ---
+[2026-02-13 14:20:32.337] [DEBUG] --- [Node: Intent & Keyword] Input: '마스크팩' ---
+[2026-02-13 14:20:33.122] [DEBUG] [Intent Gate] '마스크팩' → Y
+[2026-02-13 14:20:33.322] [DEBUG] [Intent Gate] '마스크팩' → Y
+[2026-02-13 14:20:35.400] [DEBUG] [NLU] '마스크팩' → PRODUCT_LOCATION | latency=2275ms
+[2026-02-13 14:20:35.400] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:20:35.401] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='마스크팩' ---
+[2026-02-13 14:20:35.515] [DEBUG] [NLU] '마스크팩' → PRODUCT_LOCATION | latency=2191ms
+[2026-02-13 14:20:35.516] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:20:35.517] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='마스크팩' ---
+[2026-02-13 14:20:36.182] [DEBUG] [Keyword Expand] '마스크팩' → ['마스크팩', '피부', '팩', '화장품', '피부관리']
+[2026-02-13 14:20:36.185] [DEBUG] --- [Node: Hybrid Search] item='마스크팩' / rewrite='마스크팩 추천 보습 진정 미백 마스크팩 종류별 가격별 비교 마스크팩 효과 마스크팩 사용법' ---
+[2026-02-13 14:20:36.187] [DEBUG] [BM25] '마스크팩' → 7 results
+[2026-02-13 14:20:36.228] [DEBUG] [Vector] '마스크팩 추천 보습 진정 미백 마스크팩 종류별 가격별 비교 마스크팩 효과 마스크팩 사용법' → 10 results
+[2026-02-13 14:20:36.228] [DEBUG] [RRF] BM25=7(×2) + Vector=10 → Fused=13
+[2026-02-13 14:20:36.230] [DEBUG]     → Final: 13 unique candidates
+[2026-02-13 14:20:36.232] [DEBUG] --- [Node: Reranker] Query='마스크팩', 13 candidates ---
+[2026-02-13 14:20:36.498] [DEBUG] [Keyword Expand] '마스크팩' → ['마스크팩', '얼굴', '팩', '미용', '피부관리', '수분', '진정']
+[2026-02-13 14:20:36.501] [DEBUG] --- [Node: Hybrid Search] item='마스크팩' / rewrite='마스크팩 종류별 추천 순위별 마스크팩 싸게 파는 곳 저렴이 마스크팩 마스크팩 효과 마스크팩' ---
+[2026-02-13 14:20:36.502] [DEBUG] [BM25] '마스크팩' → 7 results
+[2026-02-13 14:20:36.527] [DEBUG] [Vector] '마스크팩 종류별 추천 순위별 마스크팩 싸게 파는 곳 저렴이 마스크팩 마스크팩 효과 마스크팩' → 10 results
+[2026-02-13 14:20:36.528] [DEBUG] [RRF] BM25=7(×2) + Vector=10 → Fused=15
+[2026-02-13 14:20:36.531] [DEBUG]     → Final: 15 unique candidates
+[2026-02-13 14:20:36.532] [DEBUG] --- [Node: Reranker] Query='마스크팩', 15 candidates ---
+[2026-02-13 14:20:37.589] [DEBUG] [Reranker] Query='마스크팩' → selected=513 | reason='사용자가 마스크팩을 찾고 있으며, 바세린 탱탱 시트 마스크팩이 가장 일반적인 마스크팩 제품...' | latency=1.056s
+[2026-02-13 14:20:37.592] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:20:37.594] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:20:37.697] [DEBUG] [Reranker] Query='마스크팩' → selected=513 | reason='여러 마스크팩 제품 중에서 '바세린 탱탱 시트 마스크팩'이 가장 일반적인 마스크팩의 형태를...' | latency=1.465s
+[2026-02-13 14:20:37.700] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:20:37.702] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:43:51.536] [DEBUG] --- [Node: Intent & Keyword] Input: '마스크팩' ---
+[2026-02-13 14:43:51.540] [DEBUG] --- [Node: Intent & Keyword] Input: '마스크팩' ---
+[2026-02-13 14:43:52.284] [DEBUG] [Intent Gate] '마스크팩' → Y
+[2026-02-13 14:43:52.509] [DEBUG] [Intent Gate] '마스크팩' → Y
+[2026-02-13 14:43:54.492] [DEBUG] [NLU] '마스크팩' → PRODUCT_LOCATION | latency=2205ms
+[2026-02-13 14:43:54.494] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:43:54.496] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='마스크팩' ---
+[2026-02-13 14:43:54.667] [DEBUG] [NLU] '마스크팩' → PRODUCT_LOCATION | latency=2156ms
+[2026-02-13 14:43:54.670] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:43:54.672] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='마스크팩' ---
+[2026-02-13 14:43:55.372] [DEBUG] [Keyword Expand] '마스크팩' → ['마스크팩', '피부', '팩', '화장품', '피부관리']
+[2026-02-13 14:43:55.375] [DEBUG] --- [Node: Hybrid Search] item='마스크팩' / rewrite='마스크팩 추천 보습 진정 미백 마스크팩 종류별 가격별 비교 마스크팩 효과 마스크팩 사용법' ---
+[2026-02-13 14:43:55.376] [DEBUG] [BM25] '마스크팩' → 7 results
+[2026-02-13 14:43:55.411] [DEBUG] [Vector] '마스크팩 추천 보습 진정 미백 마스크팩 종류별 가격별 비교 마스크팩 효과 마스크팩 사용법' → 10 results
+[2026-02-13 14:43:55.411] [DEBUG] [RRF] BM25=7(×2) + Vector=10 → Fused=13
+[2026-02-13 14:43:55.413] [DEBUG]     → Final: 13 unique candidates
+[2026-02-13 14:43:55.414] [DEBUG] --- [Node: Reranker] Query='마스크팩', 13 candidates ---
+[2026-02-13 14:43:55.471] [DEBUG] [Keyword Expand] '마스크팩' → ['마스크팩', '얼굴', '팩', '화장품', '피부관리']
+[2026-02-13 14:43:55.472] [DEBUG] --- [Node: Hybrid Search] item='마스크팩' / rewrite='마스크팩 추천 보습 진정 미백 마스크팩 종류별 가격별 비교 마스크팩 효과 마스크팩 사용법' ---
+[2026-02-13 14:43:55.474] [DEBUG] [BM25] '마스크팩' → 7 results
+[2026-02-13 14:43:55.494] [DEBUG] [Vector] '마스크팩 추천 보습 진정 미백 마스크팩 종류별 가격별 비교 마스크팩 효과 마스크팩 사용법' → 10 results
+[2026-02-13 14:43:55.495] [DEBUG] [RRF] BM25=7(×2) + Vector=10 → Fused=13
+[2026-02-13 14:43:55.497] [DEBUG]     → Final: 13 unique candidates
+[2026-02-13 14:43:55.498] [DEBUG] --- [Node: Reranker] Query='마스크팩', 13 candidates ---
+[2026-02-13 14:43:56.559] [DEBUG] [Reranker] Query='마스크팩' → selected=513 | reason='여러 마스크팩 종류 중에서, '바세린 탱탱 시트 마스크팩'이 가장 일반적인 마스크팩의 형태...' | latency=1.061s
+[2026-02-13 14:43:56.561] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:43:56.563] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:43:56.835] [DEBUG] [Reranker] Query='마스크팩' → selected=513 | reason='다양한 마스크팩 제품이 있지만, '바세린 탱탱 시트 마스크팩'이 가장 일반적인 마스크팩의 ...' | latency=1.418s
+[2026-02-13 14:43:56.844] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:43:56.850] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:52:24.860] [DEBUG] --- [Node: Intent & Keyword] Input: '제습제' ---
+[2026-02-13 14:52:24.864] [DEBUG] --- [Node: Intent & Keyword] Input: '제습제' ---
+[2026-02-13 14:52:25.579] [DEBUG] [Intent Gate] '제습제' → Y
+[2026-02-13 14:52:25.835] [DEBUG] [Intent Gate] '제습제' → Y
+[2026-02-13 14:52:27.922] [DEBUG] [NLU] '제습제' → PRODUCT_LOCATION | latency=2341ms
+[2026-02-13 14:52:27.924] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:52:27.925] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='제습제' ---
+[2026-02-13 14:52:28.213] [DEBUG] [NLU] '제습제' → PRODUCT_LOCATION | latency=2374ms
+[2026-02-13 14:52:28.213] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:52:28.213] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='제습제' ---
+[2026-02-13 14:52:28.797] [DEBUG] [Keyword Expand] '제습제' → ['제습제', '옷장', '습기 제거제', '생활용품', '습기 제거']
+[2026-02-13 14:52:28.803] [DEBUG] --- [Node: Hybrid Search] item='제습제' / rewrite='제습제 옷장용 신발장용 차량용 가정용 습기 제거제 물먹는 하마 염화칼슘 실리카겔 향기 제습' ---
+[2026-02-13 14:52:28.811] [DEBUG] [BM25] '제습제' → 4 results
+[2026-02-13 14:52:28.909] [DEBUG] [Vector] '제습제 옷장용 신발장용 차량용 가정용 습기 제거제 물먹는 하마 염화칼슘 실리카겔 향기 제습' → 10 results
+[2026-02-13 14:52:28.910] [DEBUG] [RRF] BM25=4(×2) + Vector=10 → Fused=14
+[2026-02-13 14:52:28.912] [DEBUG]     → Final: 14 unique candidates
+[2026-02-13 14:52:28.913] [DEBUG] --- [Node: Reranker] Query='제습제', 14 candidates ---
+[2026-02-13 14:52:28.939] [DEBUG] [Keyword Expand] '제습제' → ['제습제', '옷장', '습기 제거제', '생활용품', '습기 제거']
+[2026-02-13 14:52:28.941] [DEBUG] --- [Node: Hybrid Search] item='제습제' / rewrite='제습제 옷장용 신발장용 차량용 가정용 습기 제거제 물먹는 하마 염화칼슘 실리카겔 향기 제습' ---
+[2026-02-13 14:52:28.943] [DEBUG] [BM25] '제습제' → 4 results
+[2026-02-13 14:52:28.985] [DEBUG] [Vector] '제습제 옷장용 신발장용 차량용 가정용 습기 제거제 물먹는 하마 염화칼슘 실리카겔 향기 제습' → 10 results
+[2026-02-13 14:52:28.985] [DEBUG] [RRF] BM25=4(×2) + Vector=10 → Fused=14
+[2026-02-13 14:52:28.987] [DEBUG]     → Final: 14 unique candidates
+[2026-02-13 14:52:28.989] [DEBUG] --- [Node: Reranker] Query='제습제', 14 candidates ---
+[2026-02-13 14:52:30.163] [DEBUG] [Reranker] Query='제습제' → selected=44 | reason='사용자가 '제습제'를 찾고 있으며, 여러 제습제 제품 중에서 '걸이형 제습제'가 가장 일반...' | latency=1.174s
+[2026-02-13 14:52:30.172] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:52:30.173] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:52:30.256] [DEBUG] [Reranker] Query='제습제' → selected=44 | reason='사용자가 제습제를 찾고 있으며, '걸이형 제습제 200 g (화이트머스크향)'이 가장 일반...' | latency=1.341s
+[2026-02-13 14:52:30.259] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:52:30.260] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:52:38.206] [DEBUG] --- [Node: Intent & Keyword] Input: '제습제' ---
+[2026-02-13 14:52:38.228] [DEBUG] --- [Node: Intent & Keyword] Input: '제습제' ---
+[2026-02-13 14:52:39.022] [DEBUG] [Intent Gate] '제습제' → Y
+[2026-02-13 14:52:39.030] [DEBUG] [Intent Gate] '제습제' → Y
+[2026-02-13 14:52:41.686] [DEBUG] [NLU] '제습제' → PRODUCT_LOCATION | latency=2659ms
+[2026-02-13 14:52:41.689] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:52:41.691] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='제습제' ---
+[2026-02-13 14:52:41.719] [DEBUG] [NLU] '제습제' → PRODUCT_LOCATION | latency=2683ms
+[2026-02-13 14:52:41.720] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:52:41.721] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='제습제' ---
+[2026-02-13 14:52:42.408] [DEBUG] [Keyword Expand] '제습제' → ['제습제', '옷장', '습기 제거제', '생활용품', '습기 제거']
+[2026-02-13 14:52:42.410] [DEBUG] --- [Node: Hybrid Search] item='제습제' / rewrite='제습제 옷장용 신발장용 차량용 가정용 습기 제거제 물먹는 하마 염화칼슘 실리카겔 향기 제습' ---
+[2026-02-13 14:52:42.413] [DEBUG] [BM25] '제습제' → 4 results
+[2026-02-13 14:52:42.437] [DEBUG] [Vector] '제습제 옷장용 신발장용 차량용 가정용 습기 제거제 물먹는 하마 염화칼슘 실리카겔 향기 제습' → 10 results
+[2026-02-13 14:52:42.438] [DEBUG] [RRF] BM25=4(×2) + Vector=10 → Fused=14
+[2026-02-13 14:52:42.439] [DEBUG]     → Final: 14 unique candidates
+[2026-02-13 14:52:42.440] [DEBUG] --- [Node: Reranker] Query='제습제', 14 candidates ---
+[2026-02-13 14:52:42.597] [DEBUG] [Keyword Expand] '제습제' → ['제습제', '옷장', '습기 제거제', '생활용품', '습기 제거']
+[2026-02-13 14:52:42.599] [DEBUG] --- [Node: Hybrid Search] item='제습제' / rewrite='제습제 옷장용 신발장용 차량용 가정용 습기 제거제 물먹는 하마 염화칼슘 실리카겔 향기 제습' ---
+[2026-02-13 14:52:42.600] [DEBUG] [BM25] '제습제' → 4 results
+[2026-02-13 14:52:42.627] [DEBUG] [Vector] '제습제 옷장용 신발장용 차량용 가정용 습기 제거제 물먹는 하마 염화칼슘 실리카겔 향기 제습' → 10 results
+[2026-02-13 14:52:42.628] [DEBUG] [RRF] BM25=4(×2) + Vector=10 → Fused=14
+[2026-02-13 14:52:42.630] [DEBUG]     → Final: 14 unique candidates
+[2026-02-13 14:52:42.646] [DEBUG] --- [Node: Reranker] Query='제습제', 14 candidates ---
+[2026-02-13 14:52:43.607] [DEBUG] [Reranker] Query='제습제' → selected=44 | reason='사용자가 제습제를 찾고 있으며, 여러 제습제 후보 중 '걸이형 제습제 200 g (화이트머...' | latency=1.167s
+[2026-02-13 14:52:43.615] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:52:43.617] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:52:43.795] [DEBUG] [Reranker] Query='제습제' → selected=44 | reason='사용자가 '제습제'를 찾고 있으며, 여러 제습제 제품 중에서 ID 44번이 가장 일반적인 ...' | latency=1.148s
+[2026-02-13 14:52:43.804] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:52:43.810] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:56:25.248] [DEBUG] --- [Node: Intent & Keyword] Input: '제습제' ---
+[2026-02-13 14:56:25.254] [DEBUG] --- [Node: Intent & Keyword] Input: '제습제' ---
+[2026-02-13 14:56:26.025] [DEBUG] [Intent Gate] '제습제' → Y
+[2026-02-13 14:56:26.217] [DEBUG] [Intent Gate] '제습제' → Y
+[2026-02-13 14:56:28.370] [DEBUG] [NLU] '제습제' → PRODUCT_LOCATION | latency=2340ms
+[2026-02-13 14:56:28.370] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:56:28.372] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='제습제' ---
+[2026-02-13 14:56:28.662] [DEBUG] [NLU] '제습제' → PRODUCT_LOCATION | latency=2445ms
+[2026-02-13 14:56:28.663] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:56:28.664] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='제습제' ---
+[2026-02-13 14:56:29.365] [DEBUG] [Keyword Expand] '제습제' → ['제습제', '습기 제거', '습기', '제거제', '생활용품', '습기 제거제']
+[2026-02-13 14:56:29.368] [DEBUG] --- [Node: Hybrid Search] item='제습제' / rewrite='제습제 옷장용 신발장용 차량용 가정용 습기 제거제 물먹는 하마 염화칼슘 실리카겔 향기 제습' ---
+[2026-02-13 14:56:29.371] [DEBUG] [BM25] '제습제' → 4 results
+[2026-02-13 14:56:29.405] [DEBUG] [Vector] '제습제 옷장용 신발장용 차량용 가정용 습기 제거제 물먹는 하마 염화칼슘 실리카겔 향기 제습' → 10 results
+[2026-02-13 14:56:29.405] [DEBUG] [RRF] BM25=4(×2) + Vector=10 → Fused=14
+[2026-02-13 14:56:29.407] [DEBUG]     → Final: 14 unique candidates
+[2026-02-13 14:56:29.408] [DEBUG] --- [Node: Reranker] Query='제습제', 14 candidates ---
+[2026-02-13 14:56:29.528] [DEBUG] [Keyword Expand] '제습제' → ['제습제', '습기 제거', '습기', '생활용품', '습기 제거제']
+[2026-02-13 14:56:29.530] [DEBUG] --- [Node: Hybrid Search] item='제습제' / rewrite='제습제 옷장용 신발장용 차량용 가정용 습기 제거제 물먹는 하마 염화칼슘 실리카겔 향기 제습' ---
+[2026-02-13 14:56:29.531] [DEBUG] [BM25] '제습제' → 4 results
+[2026-02-13 14:56:29.585] [DEBUG] [Vector] '제습제 옷장용 신발장용 차량용 가정용 습기 제거제 물먹는 하마 염화칼슘 실리카겔 향기 제습' → 10 results
+[2026-02-13 14:56:29.585] [DEBUG] [RRF] BM25=4(×2) + Vector=10 → Fused=14
+[2026-02-13 14:56:29.589] [DEBUG]     → Final: 14 unique candidates
+[2026-02-13 14:56:29.590] [DEBUG] --- [Node: Reranker] Query='제습제', 14 candidates ---
+[2026-02-13 14:56:30.459] [DEBUG] [Reranker] Query='제습제' → selected=44 | reason='사용자가 '제습제'를 찾고 있으며, 여러 제습제 중에서 가장 일반적인 형태인 걸이형 제습제...' | latency=1.050s
+[2026-02-13 14:56:30.462] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:56:30.465] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:56:30.685] [DEBUG] [Reranker] Query='제습제' → selected=44 | reason='사용자가 '제습제'를 찾고 있으며, 가장 일반적인 형태의 걸이형 제습제(화이트머스크향)가 ...' | latency=1.094s
+[2026-02-13 14:56:30.692] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:56:30.697] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:57:42.441] [DEBUG] --- [Node: Intent & Keyword] Input: '과자' ---
+[2026-02-13 14:57:42.448] [DEBUG] --- [Node: Intent & Keyword] Input: '과자' ---
+[2026-02-13 14:57:43.237] [DEBUG] [Intent Gate] '과자' → Y
+[2026-02-13 14:57:43.327] [DEBUG] [Intent Gate] '과자' → Y
+[2026-02-13 14:57:46.504] [DEBUG] [NLU] '과자' → PRODUCT_LOCATION | latency=3173ms
+[2026-02-13 14:57:46.506] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:57:46.508] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='과자' ---
+[2026-02-13 14:57:47.049] [DEBUG] [NLU] '과자' → PRODUCT_LOCATION | latency=3810ms
+[2026-02-13 14:57:47.051] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 14:57:47.053] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='과자' ---
+[2026-02-13 14:57:47.391] [DEBUG] [Keyword Expand] '과자' → ['과자', '간식', '식품']
+[2026-02-13 14:57:47.394] [DEBUG] --- [Node: Hybrid Search] item='과자' / rewrite='과자 스낵 간식 쿠키 젤리 사탕 초콜릿 비스킷 땅콩 캐러멜 껌 웨하스 캔디 박하 밀크 카라' ---
+[2026-02-13 14:57:47.395] [DEBUG] [BM25] '과자' → 2 results
+[2026-02-13 14:57:47.475] [DEBUG] [Vector] '과자 스낵 간식 쿠키 젤리 사탕 초콜릿 비스킷 땅콩 캐러멜 껌 웨하스 캔디 박하 밀크 카라' → 10 results
+[2026-02-13 14:57:47.475] [DEBUG] [RRF] BM25=2(×2) + Vector=10 → Fused=12
+[2026-02-13 14:57:47.478] [DEBUG]     → Final: 12 unique candidates
+[2026-02-13 14:57:47.479] [DEBUG] --- [Node: Reranker] Query='과자', 12 candidates ---
+[2026-02-13 14:57:47.736] [DEBUG] [Keyword Expand] '과자' → ['과자', '간식', '식품']
+[2026-02-13 14:57:47.738] [DEBUG] --- [Node: Hybrid Search] item='과자' / rewrite='과자 스낵 간식 쿠키 젤리 사탕 초콜릿 비스킷 땅콩 껌 캐러멜 푸딩 맛밤 양갱 전병 센베이' ---
+[2026-02-13 14:57:47.740] [DEBUG] [BM25] '과자' → 2 results
+[2026-02-13 14:57:47.771] [DEBUG] [Vector] '과자 스낵 간식 쿠키 젤리 사탕 초콜릿 비스킷 땅콩 껌 캐러멜 푸딩 맛밤 양갱 전병 센베이' → 10 results
+[2026-02-13 14:57:47.772] [DEBUG] [RRF] BM25=2(×2) + Vector=10 → Fused=12
+[2026-02-13 14:57:47.773] [DEBUG]     → Final: 12 unique candidates
+[2026-02-13 14:57:47.775] [DEBUG] --- [Node: Reranker] Query='과자', 12 candidates ---
+[2026-02-13 14:57:48.894] [DEBUG] [Reranker] Query='과자' → selected=321 | reason='사용자가 '과자'를 찾고 있으며, 코스모스 두부 과자가 가장 적합한 제품입니다. 다른 후보...' | latency=1.415s
+[2026-02-13 14:57:48.897] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:57:48.899] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 14:57:48.985] [DEBUG] [Reranker] Query='과자' → selected=321 | reason='사용자가 '과자'를 찾고 있으며, 코스모스 두부 과자가 가장 적합한 후보입니다. 밀펑 과자...' | latency=1.210s
+[2026-02-13 14:57:48.988] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 14:57:48.989] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:03:52.225] [DEBUG] --- [Node: Intent & Keyword] Input: '과자' ---
+[2026-02-13 15:03:52.800] [DEBUG] --- [Node: Intent & Keyword] Input: '과자' ---
+[2026-02-13 15:03:53.723] [DEBUG] [Intent Gate] '과자' → Y
+[2026-02-13 15:03:53.922] [DEBUG] [Intent Gate] '과자' → Y
+[2026-02-13 15:03:57.049] [DEBUG] [NLU] '과자' → PRODUCT_LOCATION | latency=3324ms
+[2026-02-13 15:03:57.050] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:03:57.053] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='과자' ---
+[2026-02-13 15:03:57.656] [DEBUG] [NLU] '과자' → PRODUCT_LOCATION | latency=3730ms
+[2026-02-13 15:03:57.659] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:03:57.661] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='과자' ---
+[2026-02-13 15:03:57.866] [DEBUG] [Keyword Expand] '과자' → ['과자', '간식', '식품', '스낵']
+[2026-02-13 15:03:57.870] [DEBUG] --- [Node: Hybrid Search] item='과자' / rewrite='과자 스낵 간식 쿠키 젤리 사탕 초콜릿 비스킷 땅콩 캐러멜 껌 웨하스 캔디 박하 밀크 카라' ---
+[2026-02-13 15:03:57.871] [DEBUG] [BM25] '과자' → 2 results
+[2026-02-13 15:04:18.237] [DEBUG] [Vector] '과자 스낵 간식 쿠키 젤리 사탕 초콜릿 비스킷 땅콩 캐러멜 껌 웨하스 캔디 박하 밀크 카라' → 10 results
+[2026-02-13 15:04:18.237] [DEBUG] [RRF] BM25=2(×2) + Vector=10 → Fused=12
+[2026-02-13 15:04:18.239] [DEBUG]     → Final: 12 unique candidates
+[2026-02-13 15:04:18.240] [DEBUG] [Keyword Expand] '과자' → ['과자', '간식', '식품']
+[2026-02-13 15:04:18.240] [DEBUG] --- [Node: Reranker] Query='과자', 12 candidates ---
+[2026-02-13 15:04:18.245] [DEBUG] --- [Node: Hybrid Search] item='과자' / rewrite='과자 스낵 간식 쿠키 젤리 사탕 초콜릿 비스킷 땅콩 껌 캐러멜 푸딩 맛밤 양갱 전병 센베이' ---
+[2026-02-13 15:04:18.246] [DEBUG] [BM25] '과자' → 2 results
+[2026-02-13 15:04:18.276] [DEBUG] [Vector] '과자 스낵 간식 쿠키 젤리 사탕 초콜릿 비스킷 땅콩 껌 캐러멜 푸딩 맛밤 양갱 전병 센베이' → 10 results
+[2026-02-13 15:04:18.276] [DEBUG] [RRF] BM25=2(×2) + Vector=10 → Fused=12
+[2026-02-13 15:04:18.278] [DEBUG]     → Final: 12 unique candidates
+[2026-02-13 15:04:18.279] [DEBUG] --- [Node: Reranker] Query='과자', 12 candidates ---
+[2026-02-13 15:04:19.565] [DEBUG] [Reranker] Query='과자' → selected=321 | reason='사용자가 '과자'를 찾고 있으며, 코스모스 두부 과자가 가장 적합한 후보입니다. 밀펑 과자...' | latency=1.324s
+[2026-02-13 15:04:19.568] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:04:19.570] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:04:19.597] [DEBUG] [Reranker] Query='과자' → selected=321 | reason='사용자가 '과자'를 찾고 있으며, 코스모스 두부 과자 및 밀펑 과자가 과자에 해당됩니다. ...' | latency=1.317s
+[2026-02-13 15:04:19.601] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:04:19.603] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:14:08.358] [DEBUG] --- [Node: Intent & Keyword] Input: '고자' ---
+[2026-02-13 15:14:08.810] [DEBUG] --- [Node: Intent & Keyword] Input: '고자' ---
+[2026-02-13 15:14:09.593] [DEBUG] [Intent Gate] '고자' → N
+[2026-02-13 15:14:09.594] [DEBUG] [Node: Intent & Keyword] → N (무관한 발화). Skipping NLU.
+[2026-02-13 15:14:09.598] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:14:09.868] [DEBUG] [Intent Gate] '고자' → N
+[2026-02-13 15:14:09.870] [DEBUG] [Node: Intent & Keyword] → N (무관한 발화). Skipping NLU.
+[2026-02-13 15:14:09.878] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:14:10.632] [DEBUG] --- [Node: Intent & Keyword] Input: '과자' ---
+[2026-02-13 15:14:10.711] [DEBUG] --- [Node: Intent & Keyword] Input: '과자' ---
+[2026-02-13 15:14:11.454] [DEBUG] [Intent Gate] '과자' → Y
+[2026-02-13 15:14:11.564] [DEBUG] [Intent Gate] '과자' → Y
+[2026-02-13 15:14:15.304] [DEBUG] [NLU] '과자' → PRODUCT_LOCATION | latency=3846ms
+[2026-02-13 15:14:15.306] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:14:15.307] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='과자' ---
+[2026-02-13 15:14:15.602] [DEBUG] [NLU] '과자' → PRODUCT_LOCATION | latency=4035ms
+[2026-02-13 15:14:15.602] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:14:15.604] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='과자' ---
+[2026-02-13 15:14:16.097] [DEBUG] [Keyword Expand] '과자' → ['과자', '간식', '식품']
+[2026-02-13 15:14:16.102] [DEBUG] --- [Node: Hybrid Search] item='과자' / rewrite='과자 스낵 간식 쿠키 젤리 사탕 초콜릿 비스킷 땅콩 껌 캐러멜 푸딩 맛밤 양갱 전병 센베이' ---
+[2026-02-13 15:14:16.107] [DEBUG] [BM25] '과자' → 2 results
+[2026-02-13 15:14:33.714] [DEBUG] [Vector] '과자 스낵 간식 쿠키 젤리 사탕 초콜릿 비스킷 땅콩 껌 캐러멜 푸딩 맛밤 양갱 전병 센베이' → 10 results
+[2026-02-13 15:14:33.714] [DEBUG] [RRF] BM25=2(×2) + Vector=10 → Fused=12
+[2026-02-13 15:14:33.717] [DEBUG]     → Final: 12 unique candidates
+[2026-02-13 15:14:33.718] [DEBUG] [Keyword Expand] '과자' → ['과자', '간식', '식품']
+[2026-02-13 15:14:33.719] [DEBUG] --- [Node: Reranker] Query='과자', 12 candidates ---
+[2026-02-13 15:14:33.721] [DEBUG] --- [Node: Hybrid Search] item='과자' / rewrite='과자 스낵 간식 쿠키 젤리 사탕 초콜릿 비스킷 땅콩 껌 캐러멜 푸딩 맛밤 양갱 전병 센베이' ---
+[2026-02-13 15:14:33.723] [DEBUG] [BM25] '과자' → 2 results
+[2026-02-13 15:14:33.748] [DEBUG] [Vector] '과자 스낵 간식 쿠키 젤리 사탕 초콜릿 비스킷 땅콩 껌 캐러멜 푸딩 맛밤 양갱 전병 센베이' → 10 results
+[2026-02-13 15:14:33.749] [DEBUG] [RRF] BM25=2(×2) + Vector=10 → Fused=12
+[2026-02-13 15:14:33.751] [DEBUG]     → Final: 12 unique candidates
+[2026-02-13 15:14:33.751] [DEBUG] --- [Node: Reranker] Query='과자', 12 candidates ---
+[2026-02-13 15:14:35.025] [DEBUG] [Reranker] Query='과자' → selected=321 | reason='과자를 찾는 사용자의 니즈에 가장 부합하는 상품은 '코스모스 두부 과자'입니다. 다른 상품...' | latency=1.273s
+[2026-02-13 15:14:35.027] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:14:35.029] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:14:35.067] [DEBUG] [Reranker] Query='과자' → selected=321 | reason='사용자가 '과자'를 찾고 있으며, '코스모스 두부 과자'와 '밀펑 과자'가 과자에 해당됩니...' | latency=1.348s
+[2026-02-13 15:14:35.071] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:14:35.073] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:15:15.290] [DEBUG] --- [Node: Intent & Keyword] Input: '과자' ---
+[2026-02-13 15:15:15.298] [DEBUG] --- [Node: Intent & Keyword] Input: '과자' ---
+[2026-02-13 15:15:16.066] [DEBUG] [Intent Gate] '과자' → Y
+[2026-02-13 15:15:16.163] [DEBUG] [Intent Gate] '과자' → Y
+[2026-02-13 15:15:19.755] [DEBUG] [NLU] '과자' → PRODUCT_LOCATION | latency=3589ms
+[2026-02-13 15:15:19.756] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:15:19.756] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='과자' ---
+[2026-02-13 15:15:20.330] [DEBUG] [NLU] '과자' → PRODUCT_LOCATION | latency=4260ms
+[2026-02-13 15:15:20.330] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:15:20.334] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='과자' ---
+[2026-02-13 15:15:20.698] [DEBUG] [Keyword Expand] '과자' → ['과자', '간식', '식품']
+[2026-02-13 15:15:20.702] [DEBUG] --- [Node: Hybrid Search] item='과자' / rewrite='과자 스낵 간식 쿠키 젤리 사탕 초콜릿 비스킷 땅콩 캐러멜 껌 웨하스 캔디 박하 밀크 카라' ---
+[2026-02-13 15:15:20.707] [DEBUG] [BM25] '과자' → 2 results
+[2026-02-13 15:15:20.773] [DEBUG] [Vector] '과자 스낵 간식 쿠키 젤리 사탕 초콜릿 비스킷 땅콩 캐러멜 껌 웨하스 캔디 박하 밀크 카라' → 10 results
+[2026-02-13 15:15:20.773] [DEBUG] [RRF] BM25=2(×2) + Vector=10 → Fused=12
+[2026-02-13 15:15:20.776] [DEBUG]     → Final: 12 unique candidates
+[2026-02-13 15:15:20.776] [DEBUG] --- [Node: Reranker] Query='과자', 12 candidates ---
+[2026-02-13 15:15:21.113] [DEBUG] [Keyword Expand] '과자' → ['과자', '식품', '간식']
+[2026-02-13 15:15:21.119] [DEBUG] --- [Node: Hybrid Search] item='과자' / rewrite='과자 스낵 간식 쿠키 젤리 사탕 초콜릿 비스킷 땅콩 껌 캐러멜 푸딩 맛밤 양갱 전병 센베이' ---
+[2026-02-13 15:15:21.126] [DEBUG] [BM25] '과자' → 2 results
+[2026-02-13 15:15:21.163] [DEBUG] [Vector] '과자 스낵 간식 쿠키 젤리 사탕 초콜릿 비스킷 땅콩 껌 캐러멜 푸딩 맛밤 양갱 전병 센베이' → 10 results
+[2026-02-13 15:15:21.164] [DEBUG] [RRF] BM25=2(×2) + Vector=10 → Fused=12
+[2026-02-13 15:15:21.164] [DEBUG]     → Final: 12 unique candidates
+[2026-02-13 15:15:21.166] [DEBUG] --- [Node: Reranker] Query='과자', 12 candidates ---
+[2026-02-13 15:15:21.980] [DEBUG] [Reranker] Query='과자' → selected=321 | reason='사용자가 '과자'를 찾고 있으며, 코스모스 두부 과자가 과자에 해당합니다. 다른 후보들은 ...' | latency=1.203s
+[2026-02-13 15:15:22.001] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:15:22.008] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:15:22.442] [DEBUG] [Reranker] Query='과자' → selected=321 | reason='사용자가 '과자'를 찾고 있으며, 코스모스 두부 과자와 밀펑 과자가 과자에 해당됩니다. 코...' | latency=1.275s
+[2026-02-13 15:15:22.452] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:15:22.459] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:16:17.046] [DEBUG] --- [Node: Intent & Keyword] Input: '철분' ---
+[2026-02-13 15:16:17.047] [DEBUG] --- [Node: Intent & Keyword] Input: '철분' ---
+[2026-02-13 15:16:17.821] [DEBUG] [Intent Gate] '철분' → Y
+[2026-02-13 15:16:17.917] [DEBUG] [Intent Gate] '철분' → Y
+[2026-02-13 15:16:20.924] [DEBUG] [NLU] '철분' → PRODUCT_LOCATION | latency=3098ms
+[2026-02-13 15:16:20.927] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:16:20.929] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='철분' ---
+[2026-02-13 15:16:20.995] [DEBUG] [NLU] '철분' → PRODUCT_LOCATION | latency=3076ms
+[2026-02-13 15:16:20.996] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:16:20.997] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='철분' ---
+[2026-02-13 15:16:21.768] [DEBUG] [Keyword Expand] '철분' → ['철분']
+[2026-02-13 15:16:21.776] [DEBUG] --- [Node: Hybrid Search] item='철분' / rewrite='철분제 영양제 건강기능식품 보충제 알약 캡슐 가루 음료 젤리 사탕 초콜릿 과자 시럽 드링크' ---
+[2026-02-13 15:16:21.782] [DEBUG] [BM25] '철분' → 1 results
+[2026-02-13 15:16:21.852] [DEBUG] [Vector] '철분제 영양제 건강기능식품 보충제 알약 캡슐 가루 음료 젤리 사탕 초콜릿 과자 시럽 드링크' → 10 results
+[2026-02-13 15:16:21.852] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=11
+[2026-02-13 15:16:21.854] [DEBUG]     → Final: 11 unique candidates
+[2026-02-13 15:16:21.856] [DEBUG] --- [Node: Reranker] Query='철분', 11 candidates ---
+[2026-02-13 15:16:21.868] [DEBUG] [Keyword Expand] '철분' → ['철분', '영양제', '건강']
+[2026-02-13 15:16:21.870] [DEBUG] --- [Node: Hybrid Search] item='철분' / rewrite='철분제 영양제 건강기능식품 보충제 약품 알약 캡슐 가루 액상 젤리 사탕 드링크 음료 식품' ---
+[2026-02-13 15:16:21.872] [DEBUG] [BM25] '철분' → 1 results
+[2026-02-13 15:16:21.897] [DEBUG] [Vector] '철분제 영양제 건강기능식품 보충제 약품 알약 캡슐 가루 액상 젤리 사탕 드링크 음료 식품' → 10 results
+[2026-02-13 15:16:21.897] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=11
+[2026-02-13 15:16:21.899] [DEBUG]     → Final: 11 unique candidates
+[2026-02-13 15:16:21.900] [DEBUG] --- [Node: Reranker] Query='철분', 11 candidates ---
+[2026-02-13 15:16:23.031] [DEBUG] [Reranker] Query='철분' → selected=73 | reason='사용자가 철분제를 찾고 있으며, 대웅제약 철분 30정 제품이 가장 적합합니다....' | latency=1.130s
+[2026-02-13 15:16:23.040] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:16:23.044] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:16:23.098] [DEBUG] [Reranker] Query='철분' → selected=73 | reason='사용자가 철분제를 찾고 있으며, 대웅제약 철분 30정 30일분이 가장 적합한 제품입니다....' | latency=1.242s
+[2026-02-13 15:16:23.101] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:16:23.102] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:19:36.151] [DEBUG] --- [Node: Intent & Keyword] Input: '바나나' ---
+[2026-02-13 15:19:36.152] [DEBUG] --- [Node: Intent & Keyword] Input: '바나나' ---
+[2026-02-13 15:19:36.931] [DEBUG] [Intent Gate] '바나나' → Y
+[2026-02-13 15:19:37.046] [DEBUG] [Intent Gate] '바나나' → Y
+[2026-02-13 15:19:39.197] [DEBUG] [NLU] '바나나' → PRODUCT_LOCATION | latency=2263ms
+[2026-02-13 15:19:39.200] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:19:39.202] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나나' ---
+[2026-02-13 15:19:39.426] [DEBUG] [NLU] '바나나' → PRODUCT_LOCATION | latency=2377ms
+[2026-02-13 15:19:39.428] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:19:39.428] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나나' ---
+[2026-02-13 15:19:39.942] [DEBUG] [Keyword Expand] '바나나' → ['바나나', '과일']
+[2026-02-13 15:19:39.947] [DEBUG] --- [Node: Hybrid Search] item='바나나' / rewrite='바나나 관련 상품 검색 (인형, 간식 등)? уточните ваш запрос, чтоб' ---
+[2026-02-13 15:19:39.957] [DEBUG] [BM25] '바나나' → 0 results
+[2026-02-13 15:19:40.030] [DEBUG] [Vector] '바나나 관련 상품 검색 (인형, 간식 등)? уточните ваш запрос, чтоб' → 10 results
+[2026-02-13 15:19:40.030] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 15:19:40.033] [DEBUG] --- [Node: Reranker] Query='바나나', 10 candidates ---
+[2026-02-13 15:19:40.187] [DEBUG] [Keyword Expand] '바나나' → ['바나나', '과일']
+[2026-02-13 15:19:40.188] [DEBUG] --- [Node: Hybrid Search] item='바나나' / rewrite='바나나 관련 상품 검색 (인형, 간식 등)? уточните ваш запрос, чтоб' ---
+[2026-02-13 15:19:40.192] [DEBUG] [BM25] '바나나' → 0 results
+[2026-02-13 15:19:40.212] [DEBUG] [Vector] '바나나 관련 상품 검색 (인형, 간식 등)? уточните ваш запрос, чтоб' → 10 results
+[2026-02-13 15:19:40.214] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 15:19:40.215] [DEBUG] --- [Node: Reranker] Query='바나나', 10 candidates ---
+[2026-02-13 15:19:41.362] [DEBUG] [Reranker] Query='바나나' → selected=None | reason='후보 제품 중에 '바나나' 과일 또는 바나나 관련 상품이 없습니다. 건강기능식품, 미용티슈...' | latency=1.326s
+[2026-02-13 15:19:41.367] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? True ---
+[2026-02-13 15:19:41.368] [DEBUG] --- [Node: Clarification] Generating question ---
+[2026-02-13 15:19:41.468] [DEBUG] [Reranker] Query='바나나' → selected=None | reason='후보 제품 목록에 '바나나'와 관련된 상품이 없습니다. 건강기능식품, 미용티슈, 물티슈, ...' | latency=1.253s
+[2026-02-13 15:19:41.478] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? True ---
+[2026-02-13 15:19:41.484] [DEBUG] --- [Node: Clarification] Generating question ---
+[2026-02-13 15:19:42.408] [DEBUG] [Node: Clarification] Question: '바나나 관련 상품을 찾으시는데, **식품** 종류를 찾으시나요? 아니면 **바나나 모양의 생활용품 (예: 미...'
+[2026-02-13 15:19:42.821] [DEBUG] [Node: Clarification] Question: '바나나 관련 상품은 뷰티/위생 용품, 식품, 청소/욕실 용품 등 다양하게 준비되어 있습니다. 혹시 바나나 *...'
+[2026-02-13 15:20:49.115] [DEBUG] --- [Node: Intent & Keyword] Input: '네스카페' ---
+[2026-02-13 15:20:49.116] [DEBUG] --- [Node: Intent & Keyword] Input: '네스카페' ---
+[2026-02-13 15:20:50.021] [DEBUG] [Intent Gate] '네스카페' → N
+[2026-02-13 15:20:50.021] [DEBUG] [Node: Intent & Keyword] → N (무관한 발화). Skipping NLU.
+[2026-02-13 15:20:50.024] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:20:50.027] [DEBUG] [Intent Gate] '네스카페' → N
+[2026-02-13 15:20:50.027] [DEBUG] [Node: Intent & Keyword] → N (무관한 발화). Skipping NLU.
+[2026-02-13 15:20:50.030] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:20:59.463] [DEBUG] --- [Node: Intent & Keyword] Input: '수프리모' ---
+[2026-02-13 15:20:59.471] [DEBUG] --- [Node: Intent & Keyword] Input: '수프리모' ---
+[2026-02-13 15:21:00.211] [DEBUG] [Intent Gate] '수프리모' → Y
+[2026-02-13 15:21:00.412] [DEBUG] [Intent Gate] '수프리모' → Y
+[2026-02-13 15:21:03.235] [DEBUG] [NLU] '수프리모' → PRODUCT_LOCATION | latency=2821ms
+[2026-02-13 15:21:03.237] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:21:03.238] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='수프리모' ---
+[2026-02-13 15:21:03.247] [DEBUG] [NLU] '수프리모' → PRODUCT_LOCATION | latency=3032ms
+[2026-02-13 15:21:03.248] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:21:03.250] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='수프리모' ---
+[2026-02-13 15:21:04.060] [DEBUG] [Keyword Expand] '수프리모' → ['수프리모']
+[2026-02-13 15:21:04.067] [DEBUG] --- [Node: Hybrid Search] item='수프리모' / rewrite='수프리모 커피믹스 인스턴트커피 원두커피 드립백 커피메이커 커피잔 텀블러 보온병 머그컵 커피' ---
+[2026-02-13 15:21:04.074] [DEBUG] [BM25] '수프리모' → 1 results
+[2026-02-13 15:21:04.125] [DEBUG] [Vector] '수프리모 커피믹스 인스턴트커피 원두커피 드립백 커피메이커 커피잔 텀블러 보온병 머그컵 커피' → 10 results
+[2026-02-13 15:21:04.126] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=10
+[2026-02-13 15:21:04.128] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 15:21:04.129] [DEBUG] [Keyword Expand] '수프리모' → ['수프리모']
+[2026-02-13 15:21:04.130] [DEBUG] --- [Node: Reranker] Query='수프리모', 10 candidates ---
+[2026-02-13 15:21:04.132] [DEBUG] --- [Node: Hybrid Search] item='수프리모' / rewrite='수프리모 커피믹스 인스턴트커피 원두커피 드립백 커피메이커 커피잔 텀블러 보온병 머그컵 커피' ---
+[2026-02-13 15:21:04.134] [DEBUG] [BM25] '수프리모' → 1 results
+[2026-02-13 15:21:04.159] [DEBUG] [Vector] '수프리모 커피믹스 인스턴트커피 원두커피 드립백 커피메이커 커피잔 텀블러 보온병 머그컵 커피' → 10 results
+[2026-02-13 15:21:04.159] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=10
+[2026-02-13 15:21:04.160] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 15:21:04.162] [DEBUG] --- [Node: Reranker] Query='수프리모', 10 candidates ---
+[2026-02-13 15:21:05.412] [DEBUG] [Reranker] Query='수프리모' → selected=29 | reason='사용자 쿼리 '수프리모'와 제품 이름 '네스카페 수프리모 골드 마일드 커피믹스'가 일치합니...' | latency=1.249s
+[2026-02-13 15:21:05.422] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:21:05.427] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:21:05.642] [DEBUG] [Reranker] Query='수프리모' → selected=29 | reason='사용자 쿼리 '수프리모'와 정확히 일치하는 상품이 후보군에 있으며, '네스카페 수프리모 골...' | latency=1.511s
+[2026-02-13 15:21:05.651] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:21:05.653] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:21:36.126] [DEBUG] --- [Node: Intent & Keyword] Input: '바나나잎' ---
+[2026-02-13 15:21:36.418] [DEBUG] --- [Node: Intent & Keyword] Input: '바나나잎' ---
+[2026-02-13 15:21:36.781] [DEBUG] [Intent Gate] '바나나잎' → Y
+[2026-02-13 15:21:37.093] [DEBUG] [Intent Gate] '바나나잎' → Y
+[2026-02-13 15:21:38.029] [DEBUG] [NLU] '바나나잎' → PRODUCT_LOCATION | latency=1247ms
+[2026-02-13 15:21:38.030] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나나잎' ---
+[2026-02-13 15:21:38.339] [DEBUG] [NLU] '바나나잎' → PRODUCT_LOCATION | latency=1244ms
+[2026-02-13 15:21:38.342] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나나잎' ---
+[2026-02-13 15:21:38.873] [DEBUG] [Keyword Expand] '바나나잎' → ['바나나잎', '잎', '식물', '장식', '인테리어']
+[2026-02-13 15:21:38.880] [DEBUG] --- [Node: Hybrid Search] item='바나나잎' / rewrite='바나나잎 포장재료 음식데코레이션' ---
+[2026-02-13 15:21:38.890] [DEBUG] [BM25] '바나나잎' → 0 results
+[2026-02-13 15:21:38.952] [DEBUG] [Vector] '바나나잎 포장재료 음식데코레이션' → 10 results
+[2026-02-13 15:21:38.952] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 15:21:38.955] [DEBUG] --- [Node: Reranker] Query='바나나잎', 10 candidates ---
+[2026-02-13 15:21:39.079] [DEBUG] [Keyword Expand] '바나나잎' → ['바나나잎', '잎', '식물', '장식', '인테리어']
+[2026-02-13 15:21:39.080] [DEBUG] --- [Node: Hybrid Search] item='바나나잎' / rewrite='바나나잎 포장재 접시 용기 덮개 장식' ---
+[2026-02-13 15:21:39.083] [DEBUG] [BM25] '바나나잎' → 0 results
+[2026-02-13 15:21:39.105] [DEBUG] [Vector] '바나나잎 포장재 접시 용기 덮개 장식' → 10 results
+[2026-02-13 15:21:39.106] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 15:21:39.108] [DEBUG] --- [Node: Reranker] Query='바나나잎', 10 candidates ---
+[2026-02-13 15:21:40.119] [DEBUG] [Reranker] Query='바나나잎' → selected=258 | reason='사용자가 '바나나잎'을 검색했으며, 후보군 중 '대웅제약 바나바잎 추출물'이 가장 관련성이...' | latency=1.163s
+[2026-02-13 15:21:40.129] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:21:40.130] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:21:40.197] [DEBUG] [Reranker] Query='바나나잎' → selected=None | reason='후보 제품 목록에 '바나나잎'과 관련된 상품이 없습니다. 코코넛칩은 바나나잎과 관련이 없습...' | latency=1.089s
+[2026-02-13 15:21:40.200] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? True ---
+[2026-02-13 15:21:40.201] [DEBUG] --- [Node: Clarification] Generating question ---
+[2026-02-13 15:21:41.621] [DEBUG] [Node: Clarification] Question: '바나나잎은 여러 용도로 사용될 수 있어서 уточнять 질문이 필요합니다. 혹시 바나나잎을 포장재, 접시,...'
+[2026-02-13 15:21:46.555] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바잎' ---
+[2026-02-13 15:21:46.564] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바잎' ---
+[2026-02-13 15:21:47.230] [DEBUG] [Intent Gate] '바나바잎' → Y
+[2026-02-13 15:21:47.442] [DEBUG] [Intent Gate] '바나바잎' → Y
+[2026-02-13 15:21:50.512] [DEBUG] [NLU] '바나바잎' → PRODUCT_LOCATION | latency=3279ms
+[2026-02-13 15:21:50.514] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:21:50.516] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바잎' ---
+[2026-02-13 15:21:50.726] [DEBUG] [NLU] '바나바잎' → PRODUCT_LOCATION | latency=3279ms
+[2026-02-13 15:21:50.726] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:21:50.726] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바잎' ---
+[2026-02-13 15:21:51.361] [DEBUG] [Keyword Expand] '바나바잎' → ['바나바잎', '건강', '잎', '건강식품']
+[2026-02-13 15:21:51.370] [DEBUG] --- [Node: Hybrid Search] item='바나바잎' / rewrite='바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' ---
+[2026-02-13 15:21:51.376] [DEBUG] [BM25] '바나바잎' → 1 results
+[2026-02-13 15:21:51.449] [DEBUG] [Vector] '바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' → 10 results
+[2026-02-13 15:21:51.450] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=11
+[2026-02-13 15:21:51.451] [DEBUG]     → Final: 11 unique candidates
+[2026-02-13 15:21:51.452] [DEBUG] --- [Node: Reranker] Query='바나바잎', 11 candidates ---
+[2026-02-13 15:21:51.477] [DEBUG] [Keyword Expand] '바나바잎' → ['바나바잎', '잎', '건강', '건강식품']
+[2026-02-13 15:21:51.479] [DEBUG] --- [Node: Hybrid Search] item='바나바잎' / rewrite='바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' ---
+[2026-02-13 15:21:51.480] [DEBUG] [BM25] '바나바잎' → 1 results
+[2026-02-13 15:21:51.504] [DEBUG] [Vector] '바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' → 10 results
+[2026-02-13 15:21:51.505] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=11
+[2026-02-13 15:21:51.506] [DEBUG]     → Final: 11 unique candidates
+[2026-02-13 15:21:51.507] [DEBUG] --- [Node: Reranker] Query='바나바잎', 11 candidates ---
+[2026-02-13 15:21:52.628] [DEBUG] [Reranker] Query='바나바잎' → selected=258 | reason='사용자가 '바나바잎'을 검색했으며, 후보군 중 '대웅제약 바나바잎 추출물'이 가장 관련성이...' | latency=1.174s
+[2026-02-13 15:21:52.638] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:21:52.645] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:21:52.733] [DEBUG] [Reranker] Query='바나바잎' → selected=258 | reason='사용자가 '바나바잎'을 검색했으며, 대웅제약 바나바잎 추출물 제품이 가장 관련성이 높습니다...' | latency=1.225s
+[2026-02-13 15:21:52.736] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:21:52.737] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:24:07.646] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바잎' ---
+[2026-02-13 15:24:07.652] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바잎' ---
+[2026-02-13 15:24:08.306] [DEBUG] [Intent Gate] '바나바잎' → Y
+[2026-02-13 15:24:08.476] [DEBUG] [Intent Gate] '바나바잎' → Y
+[2026-02-13 15:24:11.571] [DEBUG] [NLU] '바나바잎' → PRODUCT_LOCATION | latency=3263ms
+[2026-02-13 15:24:11.574] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:24:11.577] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바잎' ---
+[2026-02-13 15:24:11.584] [DEBUG] [NLU] '바나바잎' → PRODUCT_LOCATION | latency=3105ms
+[2026-02-13 15:24:11.586] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:24:11.587] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바잎' ---
+[2026-02-13 15:24:12.317] [DEBUG] [Keyword Expand] '바나바잎' → ['바나바잎', '차', '건강식품']
+[2026-02-13 15:24:12.319] [DEBUG] --- [Node: Hybrid Search] item='바나바잎' / rewrite='바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' ---
+[2026-02-13 15:24:12.320] [DEBUG] [BM25] '바나바잎' → 1 results
+[2026-02-13 15:24:12.346] [DEBUG] [Vector] '바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' → 10 results
+[2026-02-13 15:24:12.347] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=11
+[2026-02-13 15:24:12.348] [DEBUG]     → Final: 11 unique candidates
+[2026-02-13 15:24:12.350] [DEBUG] --- [Node: Reranker] Query='바나바잎', 11 candidates ---
+[2026-02-13 15:24:12.560] [DEBUG] [Keyword Expand] '바나바잎' → ['바나바잎', '잎', '건강식품']
+[2026-02-13 15:24:12.563] [DEBUG] --- [Node: Hybrid Search] item='바나바잎' / rewrite='바나바잎차 건강기능식품 다이어트 보조제 혈당관리 영양제 건강식품 차 티백 환 가루 추출물' ---
+[2026-02-13 15:24:12.564] [DEBUG] [BM25] '바나바잎' → 1 results
+[2026-02-13 15:24:12.627] [DEBUG] [Vector] '바나바잎차 건강기능식품 다이어트 보조제 혈당관리 영양제 건강식품 차 티백 환 가루 추출물' → 10 results
+[2026-02-13 15:24:12.628] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=10
+[2026-02-13 15:24:12.629] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 15:24:12.631] [DEBUG] --- [Node: Reranker] Query='바나바잎', 10 candidates ---
+[2026-02-13 15:24:13.635] [DEBUG] [Reranker] Query='바나바잎' → selected=258 | reason='사용자가 '바나바잎'을 검색했으며, 후보군 중 '대웅제약 바나바잎 추출물'이 가장 관련성이...' | latency=1.285s
+[2026-02-13 15:24:13.637] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:24:13.639] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:24:13.721] [DEBUG] [Reranker] Query='바나바잎' → selected=258 | reason='사용자가 '바나바잎'을 검색했으며, 대웅제약 바나바잎 추출물 30정이 가장 관련성이 높습니...' | latency=1.090s
+[2026-02-13 15:24:13.724] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:24:13.725] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:37:26.250] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바잎' ---
+[2026-02-13 15:37:26.742] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바잎' ---
+[2026-02-13 15:37:27.552] [DEBUG] [Intent Gate] '바나바잎' → Y
+[2026-02-13 15:37:27.656] [DEBUG] [Intent Gate] '바나바잎' → Y
+[2026-02-13 15:37:30.579] [DEBUG] [NLU] '바나바잎' → PRODUCT_LOCATION | latency=3024ms
+[2026-02-13 15:37:30.580] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:37:30.613] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바잎' ---
+[2026-02-13 15:37:30.706] [DEBUG] [NLU] '바나바잎' → PRODUCT_LOCATION | latency=3046ms
+[2026-02-13 15:37:30.706] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:37:30.708] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바잎' ---
+[2026-02-13 15:37:31.457] [DEBUG] [Keyword Expand] '바나바잎' → ['바나바잎', '잎', '건강', '건강식품']
+[2026-02-13 15:37:31.495] [DEBUG] --- [Node: Hybrid Search] item='바나바잎' / rewrite='바나바잎차 건강기능식품 다이어트 보조제 혈당관리 영양제 건강식품 차 티백 환 가루 추출물' ---
+[2026-02-13 15:37:31.511] [DEBUG] [BM25] '바나바잎' → 1 results
+[2026-02-13 15:37:44.974] [DEBUG] [Vector] '바나바잎차 건강기능식품 다이어트 보조제 혈당관리 영양제 건강식품 차 티백 환 가루 추출물' → 10 results
+[2026-02-13 15:37:44.975] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=10
+[2026-02-13 15:37:44.977] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 15:37:44.978] [DEBUG] [Keyword Expand] '바나바잎' → ['바나바잎', '잎', '식품', '건강', '차']
+[2026-02-13 15:37:44.980] [DEBUG] --- [Node: Reranker] Query='바나바잎', 10 candidates ---
+[2026-02-13 15:37:44.983] [DEBUG] --- [Node: Hybrid Search] item='바나바잎' / rewrite='바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' ---
+[2026-02-13 15:37:44.986] [DEBUG] [BM25] '바나바잎' → 1 results
+[2026-02-13 15:37:45.013] [DEBUG] [Vector] '바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' → 10 results
+[2026-02-13 15:37:45.013] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=11
+[2026-02-13 15:37:45.017] [DEBUG]     → Final: 11 unique candidates
+[2026-02-13 15:37:45.018] [DEBUG] --- [Node: Reranker] Query='바나바잎', 11 candidates ---
+[2026-02-13 15:37:46.045] [DEBUG] [Reranker] Query='바나바잎' → selected=258 | reason='사용자가 '바나바잎'을 검색했으며, 대웅제약 바나바잎 추출물 제품이 가장 관련성이 높습니다...' | latency=1.065s
+[2026-02-13 15:37:46.047] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:37:46.048] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:37:46.222] [DEBUG] [Reranker] Query='바나바잎' → selected=258 | reason='사용자가 '바나바잎'을 검색했으며, 후보군 중 '대웅제약 바나바잎 추출물'이 가장 관련성이...' | latency=1.202s
+[2026-02-13 15:37:46.228] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:37:46.232] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:44:42.252] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바잎' ---
+[2026-02-13 15:44:42.656] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바잎' ---
+[2026-02-13 15:44:43.497] [DEBUG] [Intent Gate] '바나바잎' → Y
+[2026-02-13 15:44:43.678] [DEBUG] [Intent Gate] '바나바잎' → Y
+[2026-02-13 15:44:46.553] [DEBUG] [NLU] '바나바잎' → PRODUCT_LOCATION | latency=3055ms
+[2026-02-13 15:44:46.556] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:44:46.558] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바잎' ---
+[2026-02-13 15:44:46.727] [DEBUG] [NLU] '바나바잎' → PRODUCT_LOCATION | latency=3047ms
+[2026-02-13 15:44:46.729] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:44:46.730] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바잎' ---
+[2026-02-13 15:44:47.344] [DEBUG] [Keyword Expand] '바나바잎' → ['바나바잎', '잎', '건강식품']
+[2026-02-13 15:44:47.348] [DEBUG] --- [Node: Hybrid Search] item='바나바잎' / rewrite='바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' ---
+[2026-02-13 15:44:47.350] [DEBUG] [BM25] '바나바잎' → 1 results
+[2026-02-13 15:44:56.783] [DEBUG] [Vector] '바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' → 10 results
+[2026-02-13 15:44:56.784] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=11
+[2026-02-13 15:44:56.786] [DEBUG]     → Final: 11 unique candidates
+[2026-02-13 15:44:56.787] [DEBUG] [Keyword Expand] '바나바잎' → ['바나바잎', '잎', '식품']
+[2026-02-13 15:44:56.789] [DEBUG] --- [Node: Reranker] Query='바나바잎', 11 candidates ---
+[2026-02-13 15:44:56.791] [DEBUG] --- [Node: Hybrid Search] item='바나바잎' / rewrite='바나바잎차 건강기능식품 다이어트 보조제 혈당관리 영양제 건강식품 차 티백 환 가루 추출물' ---
+[2026-02-13 15:44:56.793] [DEBUG] [BM25] '바나바잎' → 1 results
+[2026-02-13 15:44:56.815] [DEBUG] [Vector] '바나바잎차 건강기능식품 다이어트 보조제 혈당관리 영양제 건강식품 차 티백 환 가루 추출물' → 10 results
+[2026-02-13 15:44:56.815] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=10
+[2026-02-13 15:44:56.817] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 15:44:56.818] [DEBUG] --- [Node: Reranker] Query='바나바잎', 10 candidates ---
+[2026-02-13 15:44:58.015] [DEBUG] [Reranker] Query='바나바잎' → selected=258 | reason='사용자가 '바나바잎'을 검색했으며, '대웅제약 바나바잎 추출물'이 가장 관련성이 높습니다....' | latency=1.196s
+[2026-02-13 15:44:58.018] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:44:58.019] [DEBUG] [Reranker] Query='바나바잎' → selected=258 | reason='사용자가 '바나바잎'을 검색했으며, ID 258번 상품이 '대웅제약 바나바잎 추출물'이므로...' | latency=1.230s
+[2026-02-13 15:44:58.021] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:44:58.023] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:44:58.026] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:45:36.609] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바' ---
+[2026-02-13 15:45:36.923] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바' ---
+[2026-02-13 15:45:37.196] [DEBUG] [Intent Gate] '바나바' → Y
+[2026-02-13 15:45:37.552] [DEBUG] [Intent Gate] '바나바' → Y
+[2026-02-13 15:45:38.280] [DEBUG] [NLU] '바나바' → PRODUCT_LOCATION | latency=1080ms
+[2026-02-13 15:45:38.283] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바' ---
+[2026-02-13 15:45:38.722] [DEBUG] [NLU] '바나바' → PRODUCT_LOCATION | latency=1169ms
+[2026-02-13 15:45:38.724] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바' ---
+[2026-02-13 15:45:38.994] [DEBUG] [Keyword Expand] '바나바' → ['바나바']
+[2026-02-13 15:45:39.001] [DEBUG] --- [Node: Hybrid Search] item='바나바' / rewrite='바나바' ---
+[2026-02-13 15:45:39.006] [DEBUG] [BM25] '바나바' → 1 results
+[2026-02-13 15:45:39.068] [DEBUG] [Vector] '바나바' → 10 results
+[2026-02-13 15:45:39.068] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=10
+[2026-02-13 15:45:39.070] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 15:45:39.072] [DEBUG] --- [Node: Reranker] Query='바나바', 10 candidates ---
+[2026-02-13 15:45:39.432] [DEBUG] [Keyword Expand] '바나바' → ['바나바']
+[2026-02-13 15:45:39.439] [DEBUG] --- [Node: Hybrid Search] item='바나바' / rewrite='바나바' ---
+[2026-02-13 15:45:39.445] [DEBUG] [BM25] '바나바' → 1 results
+[2026-02-13 15:45:39.466] [DEBUG] [Vector] '바나바' → 10 results
+[2026-02-13 15:45:39.467] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=10
+[2026-02-13 15:45:39.468] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 15:45:39.470] [DEBUG] --- [Node: Reranker] Query='바나바', 10 candidates ---
+[2026-02-13 15:45:40.225] [DEBUG] [Reranker] Query='바나바' → selected=258 | reason='사용자 쿼리 '바나바'와 가장 관련성이 높은 제품은 '대웅제약 바나바잎 추출물 30정'입니...' | latency=1.152s
+[2026-02-13 15:45:40.234] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? True ---
+[2026-02-13 15:45:40.235] [DEBUG] --- [Node: Clarification] Generating question ---
+[2026-02-13 15:45:40.599] [DEBUG] [Reranker] Query='바나바' → selected=258 | reason='사용자 쿼리 '바나바'에 가장 부합하는 상품은 '대웅제약 바나바잎 추출물'입니다. 다른 상...' | latency=1.129s
+[2026-02-13 15:45:40.608] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? True ---
+[2026-02-13 15:45:40.614] [DEBUG] --- [Node: Clarification] Generating question ---
+[2026-02-13 15:45:41.402] [DEBUG] [Node: Clarification] Question: '바나바는 여러 종류가 있어서 조금 더 자세히 알려주시면 좋을 것 같아요. 혹시 **뷰티/위생 용품**을 찾으...'
+[2026-02-13 15:45:41.763] [DEBUG] [Node: Clarification] Question: '바나바 제품은 뷰티/위생 용품, 기타, 청소/욕실 용품 등 다양한 종류가 있습니다. 혹시 찾으시는 제품이 화...'
+[2026-02-13 15:45:51.124] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바잎' ---
+[2026-02-13 15:45:51.125] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바잎' ---
+[2026-02-13 15:45:51.777] [DEBUG] [Intent Gate] '바나바잎' → Y
+[2026-02-13 15:45:51.957] [DEBUG] [Intent Gate] '바나바잎' → Y
+[2026-02-13 15:45:55.041] [DEBUG] [NLU] '바나바잎' → PRODUCT_LOCATION | latency=3081ms
+[2026-02-13 15:45:55.041] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:45:55.041] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바잎' ---
+[2026-02-13 15:45:55.046] [DEBUG] [NLU] '바나바잎' → PRODUCT_LOCATION | latency=3265ms
+[2026-02-13 15:45:55.046] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:45:55.047] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바잎' ---
+[2026-02-13 15:45:55.778] [DEBUG] [Keyword Expand] '바나바잎' → ['바나바잎', '잎', '건강식품']
+[2026-02-13 15:45:55.786] [DEBUG] --- [Node: Hybrid Search] item='바나바잎' / rewrite='바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' ---
+[2026-02-13 15:45:55.793] [DEBUG] [BM25] '바나바잎' → 1 results
+[2026-02-13 15:45:55.833] [DEBUG] [Vector] '바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' → 10 results
+[2026-02-13 15:45:55.834] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=11
+[2026-02-13 15:45:55.835] [DEBUG]     → Final: 11 unique candidates
+[2026-02-13 15:45:55.837] [DEBUG] --- [Node: Reranker] Query='바나바잎', 11 candidates ---
+[2026-02-13 15:45:55.875] [DEBUG] [Keyword Expand] '바나바잎' → ['바나바잎', '잎', '건강식품']
+[2026-02-13 15:45:55.877] [DEBUG] --- [Node: Hybrid Search] item='바나바잎' / rewrite='바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' ---
+[2026-02-13 15:45:55.877] [DEBUG] [BM25] '바나바잎' → 1 results
+[2026-02-13 15:45:55.908] [DEBUG] [Vector] '바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' → 10 results
+[2026-02-13 15:45:55.909] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=11
+[2026-02-13 15:45:55.910] [DEBUG]     → Final: 11 unique candidates
+[2026-02-13 15:45:55.911] [DEBUG] --- [Node: Reranker] Query='바나바잎', 11 candidates ---
+[2026-02-13 15:45:56.956] [DEBUG] [Reranker] Query='바나바잎' → selected=258 | reason='사용자가 '바나바잎'을 검색했고, ID 258은 바나바잎 추출물을 포함하는 건강기능식품입니...' | latency=1.118s
+[2026-02-13 15:45:56.966] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:45:56.971] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:45:57.136] [DEBUG] [Reranker] Query='바나바잎' → selected=258 | reason='사용자가 '바나바잎'을 검색했으며, 후보 중 '대웅제약 바나바잎 추출물'이 가장 관련성이 ...' | latency=1.224s
+[2026-02-13 15:45:57.145] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:45:57.153] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:49:24.529] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바잎' ---
+[2026-02-13 15:49:24.806] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바잎' ---
+[2026-02-13 15:49:25.531] [DEBUG] [Intent Gate] '바나바잎' → Y
+[2026-02-13 15:49:25.789] [DEBUG] [Intent Gate] '바나바잎' → Y
+[2026-02-13 15:49:28.642] [DEBUG] [NLU] '바나바잎' → PRODUCT_LOCATION | latency=3108ms
+[2026-02-13 15:49:28.644] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:49:28.646] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바잎' ---
+[2026-02-13 15:49:28.726] [DEBUG] [NLU] '바나바잎' → PRODUCT_LOCATION | latency=2932ms
+[2026-02-13 15:49:28.727] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 15:49:28.727] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바잎' ---
+[2026-02-13 15:49:29.333] [DEBUG] [Keyword Expand] '바나바잎' → ['바나바잎']
+[2026-02-13 15:49:29.335] [DEBUG] --- [Node: Hybrid Search] item='바나바잎' / rewrite='바나바잎차 건강기능식품 다이어트 보조제 혈당관리 영양제 건강식품 차 티백 환 가루 추출물' ---
+[2026-02-13 15:49:29.337] [DEBUG] [BM25] '바나바잎' → 1 results
+[2026-02-13 15:49:38.026] [DEBUG] [Vector] '바나바잎차 건강기능식품 다이어트 보조제 혈당관리 영양제 건강식품 차 티백 환 가루 추출물' → 10 results
+[2026-02-13 15:49:38.027] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=10
+[2026-02-13 15:49:38.029] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 15:49:38.031] [DEBUG] [Keyword Expand] '바나바잎' → ['바나바잎', '건강', '잎', '건강식품', '차']
+[2026-02-13 15:49:38.032] [DEBUG] --- [Node: Reranker] Query='바나바잎', 10 candidates ---
+[2026-02-13 15:49:38.035] [DEBUG] --- [Node: Hybrid Search] item='바나바잎' / rewrite='바나바잎차 건강기능식품 다이어트 보조제 혈당관리 영양제 건강식품 차 티백 환 가루 추출물' ---
+[2026-02-13 15:49:38.037] [DEBUG] [BM25] '바나바잎' → 1 results
+[2026-02-13 15:49:38.061] [DEBUG] [Vector] '바나바잎차 건강기능식품 다이어트 보조제 혈당관리 영양제 건강식품 차 티백 환 가루 추출물' → 10 results
+[2026-02-13 15:49:38.062] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=10
+[2026-02-13 15:49:38.063] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 15:49:38.064] [DEBUG] --- [Node: Reranker] Query='바나바잎', 10 candidates ---
+[2026-02-13 15:49:39.130] [DEBUG] [Reranker] Query='바나바잎' → selected=258 | reason='사용자가 '바나바잎'을 검색했으며, 대웅제약 바나바잎 추출물 제품이 가장 관련성이 높습니다...' | latency=1.098s
+[2026-02-13 15:49:39.140] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:49:39.147] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 15:49:39.215] [DEBUG] [Reranker] Query='바나바잎' → selected=258 | reason='사용자가 '바나바잎'을 검색했으며, 대웅제약 바나바잎 추출물 제품이 가장 관련성이 높습니다...' | latency=1.151s
+[2026-02-13 15:49:39.218] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 15:49:39.220] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 16:11:17.738] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바잎' ---
+[2026-02-13 16:11:17.739] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바잎' ---
+[2026-02-13 16:11:18.495] [DEBUG] [Intent Gate] '바나바잎' → Y
+[2026-02-13 16:11:18.774] [DEBUG] [Intent Gate] '바나바잎' → Y
+[2026-02-13 16:11:21.810] [DEBUG] [NLU] '바나바잎' → PRODUCT_LOCATION | latency=3313ms
+[2026-02-13 16:11:21.810] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 16:11:21.811] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바잎' ---
+[2026-02-13 16:11:22.002] [DEBUG] [NLU] '바나바잎' → PRODUCT_LOCATION | latency=3227ms
+[2026-02-13 16:11:22.003] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 16:11:22.004] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바잎' ---
+[2026-02-13 16:11:22.581] [DEBUG] [Keyword Expand] '바나바잎' → ['바나바잎', '잎', '건강식품']
+[2026-02-13 16:11:22.587] [DEBUG] --- [Node: Hybrid Search] item='바나바잎' / rewrite='바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' ---
+[2026-02-13 16:11:22.592] [DEBUG] [BM25] '바나바잎' → 1 results
+[2026-02-13 16:11:22.660] [DEBUG] [Vector] '바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' → 10 results
+[2026-02-13 16:11:22.660] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=11
+[2026-02-13 16:11:22.662] [DEBUG]     → Final: 11 unique candidates
+[2026-02-13 16:11:22.663] [DEBUG] --- [Node: Reranker] Query='바나바잎', 11 candidates ---
+[2026-02-13 16:11:22.771] [DEBUG] [Keyword Expand] '바나바잎' → ['바나바잎', '잎', '건강', '건강식품']
+[2026-02-13 16:11:22.773] [DEBUG] --- [Node: Hybrid Search] item='바나바잎' / rewrite='바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' ---
+[2026-02-13 16:11:22.775] [DEBUG] [BM25] '바나바잎' → 1 results
+[2026-02-13 16:11:22.798] [DEBUG] [Vector] '바나바잎 추출물 차 건강기능식품 영양제 다이어트 보조제 혈당 관리 제품 효능 효과 부작용' → 10 results
+[2026-02-13 16:11:22.798] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=11
+[2026-02-13 16:11:22.800] [DEBUG]     → Final: 11 unique candidates
+[2026-02-13 16:11:22.801] [DEBUG] --- [Node: Reranker] Query='바나바잎', 11 candidates ---
+[2026-02-13 16:11:23.816] [DEBUG] [Reranker] Query='바나바잎' → selected=258 | reason='사용자가 '바나바잎'을 검색했으며, 대웅제약 바나바잎 추출물 제품이 가장 관련성이 높습니다...' | latency=1.153s
+[2026-02-13 16:11:23.819] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 16:11:23.820] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 16:11:23.914] [DEBUG] [Reranker] Query='바나바잎' → selected=258 | reason='사용자가 '바나바잎'을 검색했으며, 후보군 중 '대웅제약 바나바잎 추출물'이 가장 관련성이...' | latency=1.113s
+[2026-02-13 16:11:23.917] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 16:11:23.919] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 16:11:32.109] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바잎' ---
+[2026-02-13 16:11:32.428] [DEBUG] --- [Node: Intent & Keyword] Input: '바나바잎' ---
+[2026-02-13 16:11:32.761] [DEBUG] [Intent Gate] '바나바잎' → Y
+[2026-02-13 16:11:33.047] [DEBUG] [Intent Gate] '바나바잎' → Y
+[2026-02-13 16:11:35.867] [DEBUG] [NLU] '바나바잎' → PRODUCT_LOCATION | latency=3103ms
+[2026-02-13 16:11:35.869] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 16:11:35.871] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바잎' ---
+[2026-02-13 16:11:36.120] [DEBUG] [NLU] '바나바잎' → PRODUCT_LOCATION | latency=3071ms
+[2026-02-13 16:11:36.120] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 16:11:36.120] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='바나바잎' ---
+[2026-02-13 16:11:36.703] [DEBUG] [Keyword Expand] '바나바잎' → ['바나바잎', '잎', '식품', '건강', '차']
+[2026-02-13 16:11:36.708] [DEBUG] --- [Node: Hybrid Search] item='바나바잎' / rewrite='바나바잎차 건강기능식품 다이어트 보조제 혈당관리 영양제 건강식품 차 티백 환 가루 추출물' ---
+[2026-02-13 16:11:36.713] [DEBUG] [BM25] '바나바잎' → 1 results
+[2026-02-13 16:11:36.742] [DEBUG] [Vector] '바나바잎차 건강기능식품 다이어트 보조제 혈당관리 영양제 건강식품 차 티백 환 가루 추출물' → 10 results
+[2026-02-13 16:11:36.743] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=10
+[2026-02-13 16:11:36.744] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 16:11:36.745] [DEBUG] --- [Node: Reranker] Query='바나바잎', 10 candidates ---
+[2026-02-13 16:11:36.900] [DEBUG] [Keyword Expand] '바나바잎' → ['바나바잎', '잎', '식품', '건강', '차']
+[2026-02-13 16:11:36.902] [DEBUG] --- [Node: Hybrid Search] item='바나바잎' / rewrite='바나바잎차 건강기능식품 다이어트 보조제 혈당관리 영양제 건강식품 차 티백 환 가루 추출물' ---
+[2026-02-13 16:11:36.902] [DEBUG] [BM25] '바나바잎' → 1 results
+[2026-02-13 16:11:36.922] [DEBUG] [Vector] '바나바잎차 건강기능식품 다이어트 보조제 혈당관리 영양제 건강식품 차 티백 환 가루 추출물' → 10 results
+[2026-02-13 16:11:36.922] [DEBUG] [RRF] BM25=1(×2) + Vector=10 → Fused=10
+[2026-02-13 16:11:36.924] [DEBUG]     → Final: 10 unique candidates
+[2026-02-13 16:11:36.925] [DEBUG] --- [Node: Reranker] Query='바나바잎', 10 candidates ---
+[2026-02-13 16:11:37.788] [DEBUG] [Reranker] Query='바나바잎' → selected=258 | reason='사용자가 '바나바잎'을 검색했으며, ID 258은 바나바잎 추출물 제품입니다. 다른 선택지...' | latency=1.041s
+[2026-02-13 16:11:37.791] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 16:11:37.792] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 16:11:37.971] [DEBUG] [Reranker] Query='바나바잎' → selected=258 | reason='사용자가 '바나바잎'을 검색했으며, 대웅제약 바나바잎 추출물 제품이 가장 관련성이 높습니다...' | latency=1.045s
+[2026-02-13 16:11:37.975] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 16:11:37.976] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 20:19:25.142] [DEBUG] --- [Node: Intent & Keyword] Input: '알콜' ---
+[2026-02-13 20:19:25.157] [DEBUG] --- [Node: Intent & Keyword] Input: '알콜' ---
+[2026-02-13 20:19:25.893] [DEBUG] [Intent Gate] '알콜' → Y
+[2026-02-13 20:19:26.119] [DEBUG] [Intent Gate] '알콜' → Y
+[2026-02-13 20:19:28.185] [DEBUG] [NLU] '알콜' → PRODUCT_LOCATION | latency=2269ms
+[2026-02-13 20:19:28.186] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 20:19:28.187] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='알콜' ---
+[2026-02-13 20:19:28.457] [DEBUG] [NLU] '알콜' → PRODUCT_LOCATION | latency=2334ms
+[2026-02-13 20:19:28.460] [DEBUG] [NLU] query_rewrite truncated to 50 chars
+[2026-02-13 20:19:28.462] [DEBUG] --- [Node: Intent] Intent=Intent.PRODUCT_LOCATION, Item='알콜' ---
+[2026-02-13 20:19:28.967] [DEBUG] [Keyword Expand] '알콜' → ['알콜', '소독', '소독약', '위생용품', '살균']
+[2026-02-13 20:19:28.973] [DEBUG] --- [Node: Hybrid Search] item='알콜' / rewrite='알콜 소독제 세정제 알코올 스왑 알코올 패드 에탄올 알코올솜 알코올 티슈 알코올 스프레이' ---
+[2026-02-13 20:19:28.986] [DEBUG] [BM25] '알콜' → 2 results
+[2026-02-13 20:19:29.094] [DEBUG] [Vector] '알콜 소독제 세정제 알코올 스왑 알코올 패드 에탄올 알코올솜 알코올 티슈 알코올 스프레이' → 10 results
+[2026-02-13 20:19:29.095] [DEBUG] [RRF] BM25=2(×2) + Vector=10 → Fused=12
+[2026-02-13 20:19:29.096] [DEBUG]     → Final: 12 unique candidates
+[2026-02-13 20:19:29.098] [DEBUG] --- [Node: Reranker] Query='알콜', 12 candidates ---
+[2026-02-13 20:19:29.298] [DEBUG] [Keyword Expand] '알콜' → ['알콜', '소독', '약품', '위생용품', '세정']
+[2026-02-13 20:19:29.300] [DEBUG] --- [Node: Hybrid Search] item='알콜' / rewrite='알콜 소독제 세정제 알코올 스왑 알코올 패드 에탄올 알코올솜 알코올 티슈 알코올 스프레이' ---
+[2026-02-13 20:19:29.302] [DEBUG] [BM25] '알콜' → 2 results
+[2026-02-13 20:19:29.336] [DEBUG] [Vector] '알콜 소독제 세정제 알코올 스왑 알코올 패드 에탄올 알코올솜 알코올 티슈 알코올 스프레이' → 10 results
+[2026-02-13 20:19:29.336] [DEBUG] [RRF] BM25=2(×2) + Vector=10 → Fused=12
+[2026-02-13 20:19:29.338] [DEBUG]     → Final: 12 unique candidates
+[2026-02-13 20:19:29.340] [DEBUG] --- [Node: Reranker] Query='알콜', 12 candidates ---
+[2026-02-13 20:19:30.314] [DEBUG] [Reranker] Query='알콜' → selected=178 | reason='사용자가 '알콜'을 검색했으며, 후보군 중에 알콜 스왑 제품이 있습니다. 자우버 알콜 스왑...' | latency=0.974s
+[2026-02-13 20:19:30.317] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 20:19:30.318] [DEBUG] --- [Node: Response] Finalizing ---
+[2026-02-13 20:19:30.407] [DEBUG] [Reranker] Query='알콜' → selected=178 | reason='사용자가 '알콜'을 검색했으며, '자우버 알콜 스왑'과 '오죤 알콜스왑', '에탄올 청소포...' | latency=1.309s
+[2026-02-13 20:19:30.409] [DEBUG] --- [Node: Ambiguity] Is Ambiguous? False ---
+[2026-02-13 20:19:30.410] [DEBUG] --- [Node: Response] Finalizing ---

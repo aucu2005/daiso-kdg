@@ -19,5 +19,12 @@ frontend/.env.local
 .vscode/
 *.swp
 
+
 # Custom
 poc/bjy/old/
+
+# Logs and Databases
+*.log
+*.db
+*.sqlite3
+*.bin

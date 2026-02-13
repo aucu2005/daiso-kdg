@@ -63,6 +63,7 @@ export interface MapZone {
         height: string;
     } | { x: number; y: number }[];
     color: string;
+    type?: 'zone' | 'start' | 'category' | 'connection';
     fontSize?: number;
 }
 

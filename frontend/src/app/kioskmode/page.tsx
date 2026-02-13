@@ -1,6 +1,6 @@
 'use client';
 
-import { Mic, Search, Home, LayoutGrid, Map as MapIcon, Headphones } from 'lucide-react';
+import { Mic, Search, Home, Map as MapIcon, Headphones } from 'lucide-react';
 import Header from '@/components/shared/Header';
 import BottomNav from '@/components/shared/BottomNav';
 import Link from 'next/link';
@@ -10,12 +10,9 @@ import { useState } from 'react';
 
 const categories = [
     { icon: <Home className="w-12 h-12" />, label: '홈', active: true },
-    { icon: <LayoutGrid className="w-12 h-12" />, label: '카테고리', href: '/kioskmode/map' },
-    { icon: <MapIcon className="w-12 h-12" />, label: '매장지도', href: '/kioskmode/map' },
+    { icon: <MapIcon className="w-12 h-12" />, label: '카테고리/매장지도', href: '/kioskmode/map' },
     { icon: <Headphones className="w-12 h-12" />, label: '고객센터' },
 ];
-
-console.log('Debug Icons:', { Mic, Search, Home, LayoutGrid, MapIcon, Headphones });
 
 export default function KioskVoiceHome() {
     const router = useRouter();

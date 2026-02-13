@@ -104,10 +104,11 @@ class NavigationRequest(BaseModel):
     start_y: int
     floor: str
     target_product_id: int
+    kiosk_id: Optional[str] = None
 
 class Point(BaseModel):
-    x: int
-    y: int
+    x: float
+    y: float
 
 class NavigationResponse(BaseModel):
     path: list[Point]
@@ -120,7 +121,7 @@ class NavigationResponse(BaseModel):
 config: dict = {}
 whisper_adapter: Optional[WhisperAdapter] = None
 quality_gate: Optional[QualityGate] = None
-quality_gate: Optional[QualityGate] = None
+
 policy_gate: Optional[PolicyGate] = None
 map_navigator: Optional[MapNavigator] = None
 
@@ -137,7 +138,7 @@ def load_config():
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Application lifespan: initialize STT adapter and gates"""
-    global config, whisper_adapter, quality_gate, policy_gate
+    global config, whisper_adapter, quality_gate, policy_gate, map_navigator
     
     print("🚀 Starting STT Pipeline API...")
     
@@ -194,6 +195,11 @@ async def lifespan(app: FastAPI):
                 # grid_data might be flat or nested? MapProcessor saves nested list.
                 map_navigator.load_grid("B1", data["grid_data"])
                 print(f"✅ Loaded B1 navigation grid")
+                
+                # Update obstacles from DB
+                zones_b1 = get_map_zones("B1")
+                if zones_b1:
+                    map_navigator.update_obstacles("B1", zones_b1)
         except Exception as e:
             print(f"⚠️ Failed to load B1 grid: {e}")
             
@@ -205,6 +211,11 @@ async def lifespan(app: FastAPI):
                 data = json.load(f)
                 map_navigator.load_grid("B2", data["grid_data"])
                 print(f"✅ Loaded B2 navigation grid")
+                
+                # Update obstacles from DB
+                zones_b2 = get_map_zones("B2")
+                if zones_b2:
+                    map_navigator.update_obstacles("B2", zones_b2)
         except Exception as e:
             print(f"⚠️ Failed to load B2 grid: {e}")
 
@@ -293,6 +304,7 @@ class MapZoneCreate(BaseModel):
     name: str
     rect: Union[dict, list]
     color: str
+    type: Literal["zone", "start", "category", "connection"] = "zone"
 
 class MapZoneDelete(BaseModel):
     id: int
@@ -301,7 +313,7 @@ class MapZoneDelete(BaseModel):
 async def create_zone_endpoint(zone: MapZoneCreate):
     try:
         rect_json = json.dumps(zone.rect)
-        zone_id = save_map_zone(zone.floor, zone.name, rect_json, zone.color)
+        zone_id = save_map_zone(zone.floor, zone.name, rect_json, zone.color, zone.type)
         return {"id": zone_id, "success": True}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -528,95 +540,168 @@ async def query_ai_pipeline(req: QueryRequest):
         raise HTTPException(status_code=500, detail=f"AI Pipeline error: {str(e)}")
 
 
+def get_zone_center(rect):
+    """Calculate center of a zone rect (dict or list of points)"""
+    import json
+    if isinstance(rect, str):
+        try:
+            rect = json.loads(rect)
+        except:
+            return None
+            
+    if isinstance(rect, list):
+        # Polygon: average of points
+        if not rect: return None
+        xs = [p['x'] for p in rect]
+        ys = [p['y'] for p in rect]
+        return {'x': sum(xs) / len(xs), 'y': sum(ys) / len(ys)}
+    else:
+        # Rect: center
+        try:
+            l = float(rect['left'].replace('%', ''))
+            t = float(rect['top'].replace('%', ''))
+            w = float(rect['width'].replace('%', ''))
+            h = float(rect['height'].replace('%', ''))
+            return {'x': l + w/2, 'y': t + h/2}
+        except:
+            return None
+
 @app.post("/api/navigation/route", response_model=NavigationResponse)
 async def calculate_route(req: NavigationRequest):
     """
     Calculate path from start location to product location.
+    Supports Kiosk Start Points, Category Fallback, and Cross-Floor Navigation.
     """
     if not map_navigator:
         raise HTTPException(status_code=503, detail="Navigation service not initialized")
 
-    # 1. Get Product Location
-    # We need product details to know shelf_id, floor, location_x, location_y
-    # But wait, database.py get_product_by_id needed.
-    # Updated import above.
+    # 1. Resolve Start Location
+    start_x, start_y, start_floor = req.start_x, req.start_y, req.floor
     
-    # Assuming we added get_product_by_id to database.py?
-    # Actually database.py doesn't have it explicitly exported in my previous view.
-    # It has get_all_products.
-    # I should check if get_product_by_id exists or implement it.
-    # For now, let's implement a quick query here or use existing function.
+    zones = get_map_zones() # Fetch all zones
     
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM products WHERE id = ?", (req.target_product_id,))
-    row = cursor.fetchone()
-    conn.close()
-    
-    if not row:
+    if req.kiosk_id:
+        # Find start zone with name matching kiosk_id (or just containing it?)
+        # Let's assume exact match or "Entrance 1"
+        # Since kiosk_id from frontend might be simple "kiosk_1", user needs to name zone "kiosk_1"
+        # Or we search for type="start"
+        print(f"DEBUG: Looking for kiosk_id='{req.kiosk_id}'")
+        start_zone = next((z for z in zones if z['type'] == 'start' and z['name'] == req.kiosk_id), None)
+        if not start_zone:
+             # Fallback: find ANY start zone on req.floor?
+             print(f"DEBUG: Start zone '{req.kiosk_id}' not found. Trying fallback.")
+             start_zone = next((z for z in zones if z['type'] == 'start' and z['floor'] == req.floor), None)
+             
+        if start_zone:
+            print(f"DEBUG: Found start_zone: {start_zone['name']}")
+            center = get_zone_center(start_zone['rect'])
+            if center:
+                start_x, start_y = center['x'], center['y']
+                start_floor = start_zone['floor']
+        else:
+            print("DEBUG: No start zone found.")
+
+    # 2. Get Product Location
+    product = get_product_by_id(req.target_product_id)
+    if not product:
+        print(f"DEBUG: Product {req.target_product_id} not found")
         raise HTTPException(status_code=404, detail="Product not found")
     
-    product = dict(row)
-    
     target_floor = product.get("floor")
-    # If no floor, default to request floor or handle error?
-    if not target_floor:
-         # Fallback logic: check shelf_id prefix?
-         # For now, error or default.
-         pass
-
-    # If start floor != target floor, we need multi-floor navigation (elevator/stairs).
-    # For this phase, assume same floor or just path on target floor?
-    # Requirement: "B1/B2 층별 내비게이션".
-    # If floors differ, we probably just guide to elevator.
-    # But let's simplify: if floors differ, return error or path on start floor to exit?
-    # Or just navigate on target floor (assuming user moves there).
-    # Frontend handles floor switching?
-    
-    # Let's assume user is on the same floor for now, or we return path for the target floor
-    # and frontend tells user "Go to B1".
-    
-    # Wait, if user is on B1 and product is on B2:
-    # We should calculate path on B1 to elevator, then B2 elevator to product.
-    # But for Phase 3, let's stick to single floor pathfinding if possible, 
-    # or just return path on the *target* floor assuming start point is relevant to that floor (e.g. entrance).
-    
-    calculation_floor = target_floor if target_floor else req.floor
-    
-    # Target coordinates
-    # product['location_x'] and ['location_y'] should be in DB.
-    # If they are None (not mapped yet), we can't navigate.
     target_x = product.get("location_x")
     target_y = product.get("location_y")
-    
+
+    # 3. Category Fallback
     if target_x is None or target_y is None:
-        # Fallback: Use simple mapping from shelf_id if needed?
-        # Or return empty path with specific message.
-         raise HTTPException(status_code=400, detail="Product location not mapped")
+        # Try to find a category zone
+        cat_major = product.get("category_major")
+        cat_middle = product.get("category_middle")
+        print(f"DEBUG: Product has no location. Checking category: {cat_major}, {cat_middle}")
+        
+        # Search for zone matching middle category first, then major
+        cat_zone = next((z for z in zones if z['type'] == 'category' and z['name'] == cat_middle), None)
+        if not cat_zone:
+            cat_zone = next((z for z in zones if z['type'] == 'category' and z['name'] == cat_major), None)
+            
+        if cat_zone:
+            print(f"DEBUG: Found category zone: {cat_zone['name']}")
+            center = get_zone_center(cat_zone['rect'])
+            if center:
+                target_x, target_y = center['x'], center['y']
+                target_floor = cat_zone['floor']
+        else:
+            print("DEBUG: Category zone not found")
+
+    if target_x is None or target_y is None:
+         print("DEBUG: 400 - Product location not mapped and no category zone found")
+         raise HTTPException(status_code=400, detail="Product location not mapped and no category zone found")
          
-    # Convert map coordinates (px) to grid coordinates.
-    # Grid size is 10px from map_processor.
-    GRID_SIZE = 10 
+    # 4. Cross-Floor Logic
+    if start_floor != target_floor:
+        print(f"DEBUG: Cross-floor navigation {start_floor} -> {target_floor}")
+        # Find connection to the target floor
+        # Assume connection zones are named "Elevator", "Escalator", etc.
+        # Find nearest connection on start_floor
+        connections = [z for z in zones if z['type'] == 'connection' and z['floor'] == start_floor]
+        if not connections:
+             print(f"DEBUG: 400 - No connection found on {start_floor}")
+             raise HTTPException(status_code=400, detail=f"No connection found on {start_floor} to go to {target_floor}")
+        
+        # Find nearest connection
+        nearest_conn = None
+        min_dist = float('inf')
+        
+        start_pt = {'x': start_x, 'y': start_y}
+        
+        for conn in connections:
+            center = get_zone_center(conn['rect'])
+            if not center: continue
+            dist = (start_pt['x'] - center['x'])**2 + (start_pt['y'] - center['y'])**2
+            if dist < min_dist:
+                min_dist = dist
+                nearest_conn = conn
+                
+        if nearest_conn:
+            print(f"DEBUG: Found connection: {nearest_conn['name']}")
+            center = get_zone_center(nearest_conn['rect'])
+            target_x, target_y = center['x'], center['y']
+            # We route on start_floor to the connection
+            calculation_floor = start_floor
+        else:
+             print("DEBUG: 400 - Could not resolve connection location")
+             raise HTTPException(status_code=400, detail="Could not resolve connection location")
+    else:
+        calculation_floor = start_floor
+
+    # 5. Calculate Path
     
-    start_grid_x = req.start_x // GRID_SIZE
-    start_grid_y = req.start_y // GRID_SIZE
-    end_grid_x = target_x // GRID_SIZE
-    end_grid_y = target_y // GRID_SIZE
+    # We need map dimensions to convert % to Grid.
+    grid_w = map_navigator.width.get(calculation_floor, 100)
+    grid_h = map_navigator.height.get(calculation_floor, 100)
+    
+    # Map 0-100% to 0-grid_w/h
+    start_grid_x = int(start_x / 100.0 * grid_w)
+    start_grid_y = int(start_y / 100.0 * grid_h)
+    end_grid_x = int(target_x / 100.0 * grid_w)
+    end_grid_y = int(target_y / 100.0 * grid_h)
     
     path = map_navigator.find_path(calculation_floor, (start_grid_x, start_grid_y), (end_grid_x, end_grid_y))
     
     if path is None:
          raise HTTPException(status_code=404, detail="No path found")
          
-    # Convert path back to pixel coordinates (center of grid cell)
-    pixel_path = [
-        Point(x=x * GRID_SIZE + GRID_SIZE // 2, y=y * GRID_SIZE + GRID_SIZE // 2)
+    # Convert path back to % for Frontend
+    pixel_path_final = [
+        Point(
+            x=(x / grid_w) * 100.0,
+            y=(y / grid_h) * 100.0
+        )
         for (x, y) in path
     ]
     
     return NavigationResponse(
-        path=pixel_path,
-        distance=len(path) * GRID_SIZE, # Approximate
+        path=pixel_path_final,
+        distance=len(path) * 1.0, 
         floor=calculation_floor
     )
 

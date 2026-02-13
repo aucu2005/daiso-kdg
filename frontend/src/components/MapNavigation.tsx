@@ -53,70 +53,57 @@ export default function MapNavigation({ floor, path, startPoint, endPoint, class
         // Clear canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Adjust canvas size to match displayed image size (which might be scaled)
-        // Note: The path coordinates from backend are based on original image size (e.g. 2000x1000).
-        // We need to scale them to current display size.
-        // Assuming mapB1/B2 intrinsic size is known or we can get it from an Image object.
+        // Path coordinates are percentages (0-100)
+        const scaleX = mapSize.width / 100;
+        const scaleY = mapSize.height / 100;
 
-        // For simplicity, let's assume path coordinates are relative (%) or we know the scale.
-        // Actually backend returns pixel coordinates based on the image provided to MapProcessor.
-        // So we need the original image dimensions.
-        // Let's load the image to get dimensions.
+        // Draw Path
+        if (path.length > 1) {
+            ctx.beginPath();
+            ctx.strokeStyle = '#FF0000';
+            ctx.lineWidth = 4;
+            ctx.setLineDash([10, 5]); // Dashed line
 
-        const img = new Image();
-        img.src = mapSrc;
-        img.onload = () => {
-            const scaleX = mapSize.width / img.width;
-            const scaleY = mapSize.height / img.height;
+            // Move to start
+            ctx.moveTo(path[0].x * scaleX, path[0].y * scaleY);
 
-            // Draw Path
-            if (path.length > 1) {
-                ctx.beginPath();
-                ctx.strokeStyle = '#FF0000';
-                ctx.lineWidth = 4;
-                ctx.setLineDash([10, 5]); // Dashed line
-
-                // Move to start
-                ctx.moveTo(path[0].x * scaleX, path[0].y * scaleY);
-
-                for (let i = 1; i < path.length; i++) {
-                    ctx.lineTo(path[i].x * scaleX, path[i].y * scaleY);
-                }
-                ctx.stroke();
+            for (let i = 1; i < path.length; i++) {
+                ctx.lineTo(path[i].x * scaleX, path[i].y * scaleY);
             }
+            ctx.stroke();
+        }
 
-            // Draw Start Point
-            if (startPoint || (path.length > 0)) {
-                const p = startPoint || path[0];
-                const x = p.x * scaleX;
-                const y = p.y * scaleY;
+        // Draw Start Point
+        if (startPoint || (path.length > 0)) {
+            const p = startPoint || path[0];
+            const x = p.x * scaleX;
+            const y = p.y * scaleY;
 
-                ctx.beginPath();
-                ctx.fillStyle = '#0000FF';
-                ctx.arc(x, y, 6, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.fillStyle = 'white';
-                ctx.font = '12px Arial';
-                ctx.fillText("Start", x + 8, y + 4);
-            }
+            ctx.beginPath();
+            ctx.fillStyle = '#0000FF';
+            ctx.arc(x, y, 6, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = 'white';
+            ctx.font = '12px Arial';
+            ctx.fillText("Start", x + 8, y + 4);
+        }
 
-            // Draw End Point
-            if (endPoint || (path.length > 0)) {
-                const p = endPoint || path[path.length - 1];
-                const x = p.x * scaleX;
-                const y = p.y * scaleY;
+        // Draw End Point
+        if (endPoint || (path.length > 0)) {
+            const p = endPoint || path[path.length - 1];
+            const x = p.x * scaleX;
+            const y = p.y * scaleY;
 
-                // Draw Marker Icon (simple circle for now)
-                ctx.beginPath();
-                ctx.fillStyle = '#FF0000';
-                ctx.arc(x, y, 8, 0, Math.PI * 2);
-                ctx.fill();
+            // Draw Marker Icon (simple circle for now)
+            ctx.beginPath();
+            ctx.fillStyle = '#FF0000';
+            ctx.arc(x, y, 8, 0, Math.PI * 2);
+            ctx.fill();
 
-                // Pulse animation could be done here with requestAnimationFrame
-            }
-        };
+            // Pulse animation could be done here with requestAnimationFrame
+        }
 
-    }, [path, mapSize, mapSrc, startPoint, endPoint]);
+    }, [path, mapSize, startPoint, endPoint]);
 
     return (
         <div ref={containerRef} className={`relative w-full h-full ${className}`}>

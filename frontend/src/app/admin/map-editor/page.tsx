@@ -11,7 +11,7 @@ type Point = { x: number; y: number };
 export default function MapEditorPage() {
     const [floor, setFloor] = useState<Floor>('B1');
     const [zones, setZones] = useState<MapZone[]>([]);
-    const [mode, setMode] = useState<'view' | 'draw-poly' | 'draw-rect' | 'delete'>('view');
+    const [mode, setMode] = useState<'view' | 'draw-poly' | 'draw-rect' | 'delete' | 'draw-start' | 'draw-connection' | 'draw-category'>('view');
     const [currentPoints, setCurrentPoints] = useState<Point[]>([]);
     const [categories, setCategories] = useState<Record<string, string[]>>({});
     const containerRef = useRef<HTMLDivElement>(null);
@@ -21,6 +21,9 @@ export default function MapEditorPage() {
     // Rectangle drawing state
     const [rectStart, setRectStart] = useState<Point | null>(null);
     const [currentRect, setCurrentRect] = useState<{ top: number, left: number, width: number, height: number } | null>(null);
+
+    // Category linking state
+    const [selectedCategory, setSelectedCategory] = useState<string>('');
 
     const mapImageSrc = floor === 'B1' ? mapB1.src : mapB2.src;
 
@@ -58,6 +61,65 @@ export default function MapEditorPage() {
         if (mode === 'draw-poly') {
             const coords = getRelativeCoords(e);
             setCurrentPoints(prev => [...prev, coords]);
+        } else if (mode === 'draw-start') {
+            const coords = getRelativeCoords(e);
+            const name = prompt('Start Point Name (e.g., Entrance 1):', 'Entrance 1');
+            if (name) {
+                // Save as a small rect or point
+                const newZone: Omit<MapZone, 'id'> = {
+                    floor,
+                    name,
+                    rect: {
+                        top: `${coords.y.toFixed(2)}%`,
+                        left: `${coords.x.toFixed(2)}%`,
+                        width: '2%',  // Small visible marker
+                        height: '2%'
+                    },
+                    color: '#FF0000', // Red for start
+                    type: 'start'
+                };
+                saveAndReload(newZone);
+            }
+            setMode('view');
+        } else if (mode === 'draw-connection') {
+            const coords = getRelativeCoords(e);
+            const name = prompt('Connection Name (e.g., Elevator):', 'Elevator');
+            if (name) {
+                const newZone: Omit<MapZone, 'id'> = {
+                    floor,
+                    name,
+                    rect: {
+                        top: `${coords.y.toFixed(2)}%`,
+                        left: `${coords.x.toFixed(2)}%`,
+                        width: '3%',
+                        height: '3%'
+                    },
+                    color: '#00FF00', // Green for Connection
+                    type: 'connection'
+                };
+                saveAndReload(newZone);
+            }
+            setMode('view');
+        } else if (mode === 'draw-category') {
+            const coords = getRelativeCoords(e);
+            const name = prompt('Category Name (e.g., Snack):', selectedCategory || '');
+            if (name) {
+                const newZone: Omit<MapZone, 'id'> = {
+                    floor,
+                    name,
+                    rect: {
+                        top: `${coords.y.toFixed(2)}%`,
+                        left: `${coords.x.toFixed(2)}%`,
+                        width: '2%',
+                        height: '2%'
+                    },
+                    color: '#FFA500', // Orange for Category Point
+                    type: 'category'
+                };
+                saveAndReload(newZone);
+            }
+            setMode('view');
+            setSelectedCategory('');
         }
     };
 
@@ -91,7 +153,7 @@ export default function MapEditorPage() {
                 return;
             }
 
-            const name = prompt('Enter Zone Name (e.g., 과자, 욕실):');
+            const name = prompt('Enter Zone/Category Name:', selectedCategory || '');
             if (name) {
                 const newZone: Omit<MapZone, 'id'> = {
                     floor,
@@ -102,13 +164,15 @@ export default function MapEditorPage() {
                         width: `${currentRect.width.toFixed(2)}%`,
                         height: `${currentRect.height.toFixed(2)}%`
                     },
-                    color: '#E1F5FE'
+                    color: selectedCategory ? '#FFF9C4' : '#E1F5FE',
+                    type: selectedCategory ? 'category' : 'zone'
                 };
                 await saveAndReload(newZone);
             }
             setRectStart(null);
             setCurrentRect(null);
             setMode('view');
+            setSelectedCategory('');
         }
     };
 
@@ -118,18 +182,20 @@ export default function MapEditorPage() {
             return;
         }
 
-        const name = prompt('Enter Zone Name (e.g., 과자, 욕실):');
+        const name = prompt('Enter Zone Name:', selectedCategory || '');
         if (!name) return;
 
         const newZone: Omit<MapZone, 'id'> = {
             floor,
             name,
             rect: currentPoints,
-            color: '#E1F5FE'
+            color: selectedCategory ? '#FFF9C4' : '#E1F5FE',
+            type: selectedCategory ? 'category' : 'zone'
         };
         await saveAndReload(newZone);
         setCurrentPoints([]);
         setMode('view');
+        setSelectedCategory('');
     };
 
     const saveAndReload = async (zone: Omit<MapZone, 'id'>) => {
@@ -151,6 +217,7 @@ export default function MapEditorPage() {
             setRectStart(null);
             setCurrentRect(null);
             setMode('view');
+            setSelectedCategory('');
         }
     };
 
@@ -172,6 +239,14 @@ export default function MapEditorPage() {
     // Helper to render zones (Polygons or Rects)
     const renderZone = (zone: MapZone) => {
         const isPoly = Array.isArray(zone.rect);
+        // Different colors for types if not overridden
+        let fillColor = zone.color;
+        if (zone.type === 'start') fillColor = '#FF0000';
+        if (zone.type === 'connection') fillColor = '#00FF00';
+        if (zone.type === 'category') fillColor = '#FFA500';
+
+        // Add border style based on type
+        const strokeColor = mode === 'delete' ? 'red' : (zone.type === 'category' ? 'orange' : 'blue');
 
         if (isPoly) {
             const points = (zone.rect as Point[]).map(p => `${p.x},${p.y}`).join(' ');
@@ -179,9 +254,9 @@ export default function MapEditorPage() {
                 <polygon
                     key={zone.id}
                     points={points}
-                    fill={zone.color}
+                    fill={fillColor}
                     fillOpacity={0.4}
-                    stroke={mode === 'delete' ? 'red' : 'blue'}
+                    stroke={strokeColor}
                     strokeWidth={0.5}
                     onClick={(e) => {
                         if (mode === 'delete' && zone.id) {
@@ -191,7 +266,7 @@ export default function MapEditorPage() {
                     }}
                     className={mode === 'delete' ? 'cursor-pointer hover:fill-red-200' : ''}
                 >
-                    <title>{zone.name}</title>
+                    <title>{zone.name} ({zone.type || 'zone'})</title>
                 </polygon>
             );
         } else {
@@ -202,25 +277,36 @@ export default function MapEditorPage() {
             const h = parseFloat(rect.height);
 
             return (
-                <rect
-                    key={zone.id}
-                    x={x} y={y} width={w} height={h}
-                    fill={zone.color}
-                    fillOpacity={0.4}
-                    stroke={mode === 'delete' ? 'red' : 'blue'}
-                    strokeWidth={0.5}
-                    onClick={(e) => {
-                        if (mode === 'delete' && zone.id) {
-                            e.stopPropagation();
-                            handleDelete(zone.id);
-                        }
-                    }}
-                    className={mode === 'delete' ? 'cursor-pointer hover:fill-red-200' : ''}
-                >
-                    <title>{zone.name}</title>
-                </rect>
+                <g key={zone.id}>
+                    <rect
+                        x={x} y={y} width={w} height={h}
+                        fill={fillColor}
+                        fillOpacity={0.5}
+                        stroke={strokeColor}
+                        strokeWidth={0.5}
+                        onClick={(e) => {
+                            if (mode === 'delete' && zone.id) {
+                                e.stopPropagation();
+                                handleDelete(zone.id);
+                            }
+                        }}
+                        className={mode === 'delete' ? 'cursor-pointer hover:fill-red-200' : ''}
+                    >
+                        <title>{zone.name} ({zone.type || 'zone'})</title>
+                    </rect>
+                    {/* Label for start/connection points for better visibility */}
+                    {(zone.type === 'start' || zone.type === 'connection' || zone.type === 'category') && (
+                        <text x={x} y={y - 1} fontSize="2" fill="black" fontWeight="bold">{zone.name}</text>
+                    )}
+                </g>
             );
         }
+    };
+
+    const handleCategoryClick = (categoryName: string) => {
+        setSelectedCategory(categoryName);
+        setMode('draw-rect'); // Auto switch to rect draw
+        // Optionally prompt or show toast
     };
 
     return (
@@ -238,7 +324,7 @@ export default function MapEditorPage() {
                         <option value="B2">B2 Floor</option>
                     </select>
 
-                    <div className="flex bg-gray-200 rounded p-1">
+                    <div className="flex bg-gray-200 rounded p-1 gap-1">
                         <button
                             onClick={() => setMode('view')}
                             className={`px-3 py-1 rounded ${mode === 'view' ? 'bg-white shadow' : ''}`}
@@ -246,16 +332,34 @@ export default function MapEditorPage() {
                             View
                         </button>
                         <button
-                            onClick={() => setMode('draw-rect')}
-                            className={`px-3 py-1 rounded ${mode === 'draw-rect' ? 'bg-blue-500 text-white shadow' : ''}`}
+                            onClick={() => { setMode('draw-rect'); setSelectedCategory(''); }}
+                            className={`px-3 py-1 rounded ${mode === 'draw-rect' && !selectedCategory ? 'bg-blue-500 text-white shadow' : ''}`}
                         >
-                            Draw Rect
+                            Zone (Rect)
                         </button>
                         <button
                             onClick={() => setMode('draw-poly')}
                             className={`px-3 py-1 rounded ${mode === 'draw-poly' ? 'bg-purple-500 text-white shadow' : ''}`}
                         >
-                            Draw Poly
+                            Zone (Poly)
+                        </button>
+                        <button
+                            onClick={() => setMode('draw-start')}
+                            className={`px-3 py-1 rounded ${mode === 'draw-start' ? 'bg-red-500 text-white shadow' : ''}`}
+                        >
+                            Start Point
+                        </button>
+                        <button
+                            onClick={() => setMode('draw-connection')}
+                            className={`px-3 py-1 rounded ${mode === 'draw-connection' ? 'bg-green-500 text-white shadow' : ''}`}
+                        >
+                            Connection
+                        </button>
+                        <button
+                            onClick={() => setMode('draw-category')}
+                            className={`px-3 py-1 rounded ${mode === 'draw-category' ? 'bg-orange-500 text-white shadow' : ''}`}
+                        >
+                            Category Point
                         </button>
                         <button
                             onClick={() => setMode('delete')}
@@ -272,7 +376,7 @@ export default function MapEditorPage() {
 
             <div className={`p-2 text-center text-sm ${mode.startsWith('draw') ? 'bg-yellow-100' : 'bg-gray-100'}`}>
                 {mode === 'draw-rect' && (
-                    <span><b>Rectangle Mode:</b> Click and drag to draw a box.</span>
+                    <span><b>Rectangle Mode</b> {selectedCategory ? `(Category: ${selectedCategory})` : ''}: Click and drag to draw a box.</span>
                 )}
                 {mode === 'draw-poly' && (
                     <span>
@@ -280,8 +384,12 @@ export default function MapEditorPage() {
                         Points: {currentPoints.length}
                     </span>
                 )}
+                {mode === 'draw-start' && <span><b>Start Point Mode:</b> Click to place a start point (Entrance).</span>}
+                {mode === 'draw-connection' && <span><b>Connection Mode:</b> Click to place a connection point (Stairs/Elevator).</span>}
+                {mode === 'draw-category' && <span><b>Category Point Mode:</b> Click to place a category marker.</span>}
                 {mode === 'view' && <span>Select a mode to start editing.</span>}
                 {mode === 'delete' && <span className="text-red-600">Click a zone to delete it.</span>}
+                {selectedCategory && mode !== 'draw-rect' && <span className="ml-2 font-bold text-blue-600">Selected Category: {selectedCategory} (Switch to Draw Rect to place)</span>}
             </div>
 
             {/* Main Content */}
@@ -358,8 +466,8 @@ export default function MapEditorPage() {
                                     y={currentRect.top}
                                     width={currentRect.width}
                                     height={currentRect.height}
-                                    fill="rgba(0,0,255,0.2)"
-                                    stroke="blue"
+                                    fill={selectedCategory ? "rgba(255,165,0,0.2)" : "rgba(0,0,255,0.2)"}
+                                    stroke={selectedCategory ? "orange" : "blue"}
                                     strokeWidth="0.5"
                                     strokeDasharray="1"
                                 />
@@ -378,7 +486,7 @@ export default function MapEditorPage() {
                     </div>
 
                     {/* Zone List Section (Top Half) */}
-                    <div className="flex-1 flex flex-col min-h-0 border-b">
+                    <div className="flex-1 flex flex-col min-h-0 border-b" style={{ maxHeight: '40%' }}>
                         <div className="px-4 py-2 bg-blue-50 text-blue-800 font-bold text-sm flex justify-between items-center">
                             <span>Defined Zones ({zones.length})</span>
                         </div>
@@ -394,12 +502,12 @@ export default function MapEditorPage() {
                                         <div className="flex items-center gap-2 overflow-hidden">
                                             <div
                                                 className="w-3 h-3 rounded-full flex-shrink-0"
-                                                style={{ backgroundColor: zone.color }}
+                                                style={{ backgroundColor: zone.type === 'start' ? 'red' : (zone.type === 'connection' ? 'green' : (zone.type === 'category' ? 'orange' : zone.color)) }}
                                             />
-                                            <span className="font-medium text-gray-700 truncate" title={zone.name}>{zone.name}</span>
-                                            <span className="text-xs text-gray-400 flex-shrink-0">
-                                                {Array.isArray(zone.rect) ? 'Poly' : 'Rect'}
-                                            </span>
+                                            <div className="flex flex-col overflow-hidden">
+                                                <span className="font-medium text-gray-700 truncate" title={zone.name}>{zone.name}</span>
+                                                <span className="text-xs text-gray-500">{zone.type || 'zone'}</span>
+                                            </div>
                                         </div>
                                         <button
                                             onClick={() => zone.id && handleDelete(zone.id)}
@@ -417,7 +525,7 @@ export default function MapEditorPage() {
                     {/* Category List Section (Bottom Half) */}
                     <div className="flex-1 flex flex-col min-h-0 bg-gray-50">
                         <div className="px-4 py-2 bg-green-50 text-green-800 font-bold text-sm border-b">
-                            Available Categories
+                            Available Categories (Click to place)
                         </div>
                         <div className="flex-1 overflow-y-auto p-4">
                             <div className="space-y-4">
@@ -426,12 +534,13 @@ export default function MapEditorPage() {
                                         <div className="font-bold text-blue-600 text-base mb-2 border-b pb-1">{major}</div>
                                         <div className="flex flex-wrap gap-2">
                                             {middles.map(middle => (
-                                                <span
+                                                <button
                                                     key={middle}
-                                                    className="inline-block px-2 py-1 bg-gray-100 text-gray-700 text-sm rounded hover:bg-blue-50 cursor-default"
+                                                    onClick={() => handleCategoryClick(middle)}
+                                                    className={`inline-block px-2 py-1 text-sm rounded cursor-pointer border ${selectedCategory === middle ? 'bg-orange-100 border-orange-300 text-orange-800 font-bold' : 'bg-gray-100 text-gray-700 hover:bg-blue-50'}`}
                                                 >
                                                     {middle}
-                                                </span>
+                                                </button>
                                             ))}
                                         </div>
                                     </div>
@@ -454,4 +563,3 @@ export default function MapEditorPage() {
         return mode.startsWith('draw');
     }
 }
-
